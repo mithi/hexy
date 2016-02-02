@@ -7,25 +7,38 @@ class Hexapod(HexapodCore):
 
         for leg in self.legs:
             leg.hip.move(0)
-            leg.knee.move(-leg.knee.max)
+            leg.knee.move(-70)
             leg.ankle.move(leg.ankle.max)
 
         sleep(s)
 
         if die: self.off()
+        
 
-    def lie_flat(self, s = 0.2):
+    def lie_flat(self, s = 0.15):
         
         for leg in self.legs:
             leg.move()
             
         sleep(s)
 
-    def get_up(self, maxx = 50, step = 4, s = 0.2):
+    def step_all(self, angle):
+        for leg in self.legs:
+            leg.step(angle)
+
+
+    def lie_down(self, maxx = 50, step = 4, s = 0.15):
+        
+        for angle in xrange(maxx, -(maxx + 1), -step):
+            self.step_all(angle)
+
+        sleep(s)
+            
+        
+    def get_up(self, maxx = 50, step = 4, s = 0.15):
 
         for angle in xrange(-maxx, maxx + 1, step):
-            for leg in self.legs:
-                leg.step(angle)
+            self.step_all(angle)
 
         sleep(s)
 
@@ -36,50 +49,34 @@ class Hexapod(HexapodCore):
 
         sleep(s)
 
-    def walk_forward(self, offset = 25 , hip_swing =  20, raised = -30, floor = 50, repetitions = 3):
-
-        first_swing = [offset - hip_swing, hip_swing, -(offset + hip_swing) ]
-        second_swing = [-x for x in first_swing]
+    def tripod_step(self, tripod, hip_swings, knee_angle):
         
-        #LF, RM, LB
-        #RB, LM, RF
-        # recall: self.tripod1 = [self.left_front, self.right_middle, self.left_back]
-        #         self.tripod2 = [self.right_front, self.left_middle, self.right_back]
+        for leg, hip_angle in zip(tripod, hip_swings):
+            leg.step(knee_end = knee_angle, hip_end = hip_angle)
 
-        for x in xrange(repetitions + 1):
+    def stride(self, tripod_a, tripod_b, swing, raised, floor, s):
 
-            for leg, angle in zip(self.tripod1, first_swing):
-                leg.step(knee_end = raised, hip_end = angle)
-
-            sleep(0.2)
-         
-            for leg, angle in zip(reversed(self.tripod2), first_swing):
-                leg.step(hip_end = angle)
-
-            for leg, angle in zip(self.tripod1, first_swing):
-                leg.step(knee_end = floor, hip_end = angle)
-
-            sleep(0.2)
-
-            for leg, angle in zip(self.tripod2, second_swing):
-                leg.step(knee_end = raised, hip_end = angle)
-
-            sleep(0.2)
+        self.tripod_step(tripod_a, swing, raised)
+        sleep(s)
         
-            for leg, angle in zip(reversed(self.tripod1), second_swing):
-                leg.step(hip_end = angle)
+        self.tripod_step(tripod_b, swing, None)
+        self.tripod_step(tripod_a, swing, floor)
+        sleep(s)
 
-            for leg, angle in zip(self.tripod2, second_swing):
-                leg.step(knee_end = floor, hip_end = angle)
-
-            sleep(0.2)
+    def move(self, repetitions, first_swing, second_swing, raised, floor, s):
         
-        
+        for x in xrange(repetitions):
+            self.stride(self.tripod1, self.tripod2, first_swing, raised, floor, s)
+            self.stride(self.tripod2, self.tripod1, second_swing, raised, floor, s)
 
+    def walk_forward(self, offset = 25 , hip_swing =  20, raised = -30, floor = 70, repetitions = 5, s = 0.2):
+
+        first_swing = [offset - hip_swing, hip_swing, -(offset + hip_swing)]
+        second_swing = [offset + hip_swing, -hip_swing, -(offset - hip_swing)]
+
+        self.move(repetitions, first_swing, second_swing, raised, floor, s)            
+      
             
-
-    
-
 def calibrate_joint(joint, s, mn, mx, z):
 
     while True:
