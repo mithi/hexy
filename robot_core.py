@@ -14,12 +14,10 @@ joint_properties = {
     'RFH': (3, 275, 425), 'RFK': (4, 227, 507), 'RFA': (5, 160, 625),
     'LMH': (6, 312, 457), 'LMK': (7, 251, 531), 'LMA': (8, 138, 598),
     'RMH': (9, 240, 390), 'RMK': (10, 230, 514), 'RMA': (11, 150, 620),
-    'LBH': (12, 315, 465), 'LBK': (13, 140, 420), 'LBA': (14, 140, 645),
+    'LBH': (12, 315, 465), 'LBK': (13, 166, 466), 'LBA': (14, 140, 645),
     'RBH': (15, 265, 415), 'RBK': (16, 244, 544), 'RBA': (17, 150, 676),
     'N': (18, 105, 670)
 }
-
-max_h = 60
 
 driver1 = PWM(0x40)
 driver2 = PWM(0x41)
@@ -90,7 +88,7 @@ class Leg:
 
     def __init__(self, name, hip_key, knee_key, ankle_key):
 
-        max_hip, max_knee, knee_leeway = 45, 50, 20
+        max_hip, max_knee, knee_leeway = 45, 50, 10
         self.hip = Joint("hip", hip_key, max_hip)
         self.knee = Joint("knee", knee_key, max_knee, leeway = knee_leeway)
         self.ankle = Joint("ankle", ankle_key)

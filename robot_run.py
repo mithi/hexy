@@ -12,22 +12,37 @@ hexy.curl_up()
 hexy.lie_flat()
 hexy.get_up()
 
-print "offset = 25, hip_swing = 25"
-hexy.walk_forward(offset = 25, hip_swing = 25)
+for angle in xrange(-40, 40, 5):
+    hexy.twist_hip(angle, 0.01)
+
+for angle in xrange(40, -40, -5):
+    hexy.twist_hip(angle, 0.01)
+
+hexy.twist_hip()
+
+print "offset = 40 forward"
+hexy.rotate(offset = 40)
+
+print "offset = -40 backward"
+hexy.rotate(offset = -40)
+
+'''
+print "offset = 25, hip_swing = 25 forward"
+hexy.walk(offset = 25, hip_swing = 25)
 sleep(s)
 
-print "offset = 25, hip_swing = -25"
-hexy.walk_forward(offset = 25, hip_swing = -25)
+print "offset = 25, hip_swing = -25 backward"
+hexy.walk(offset = 25, hip_swing = -25)
 sleep(s)
 
-print "offset = -25, hip_swing = 25"
-hexy.walk_forward(offset = -25, hip_swing = 25)
+print "offset = -25, hip_swing = 25 forward"
+hexy.walk(offset = -25, hip_swing = 25)
 sleep(s)
 
-print "offset = -25, hip_swing = -25"
-hexy.walk_forward(offset = -25, hip_swing = -25)
+print "offset = -25, hip_swing = -25 backward"
+hexy.walk(offset = -25, hip_swing = -25)
 sleep(s)
-
+'''
 
 hexy.twist_hip()
 hexy.lie_down()
