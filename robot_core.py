@@ -14,7 +14,7 @@ joint_properties = {
     'RFH': (3, 275, 425), 'RFK': (4, 227, 507), 'RFA': (5, 160, 625),
     'LMH': (6, 312, 457), 'LMK': (7, 251, 531), 'LMA': (8, 138, 598),
     'RMH': (9, 240, 390), 'RMK': (10, 230, 514), 'RMA': (11, 150, 620),
-    'LBH': (12, 315, 465), 'LBK': (13, 280, 564), 'LBA': (14, 130, 655),
+    'LBH': (12, 315, 465), 'LBK': (13, 140, 420), 'LBA': (14, 140, 645),
     'RBH': (15, 265, 415), 'RBK': (16, 244, 544), 'RBA': (17, 150, 676),
     'N': (18, 105, 670)
 }
@@ -101,12 +101,14 @@ class Leg:
     def step(self, knee_end = None, hip_end = None):
         #knee_end < 0 means thigh is raised
         
+        offset = 100
+
         if knee_end == None:
             knee_end = self.knee.angle
         if hip_end == None:
             hip_end = self.hip.angle
 
-        self.move(hip_end, knee_end, knee_end - 90)
+        self.move(hip_end, knee_end, knee_end - offset)
 
     def move(self, hip_end = 0, knee_end = 0, ankle_end = 0):
 
@@ -131,7 +133,7 @@ class Joint:
         angle = constrain(angle, -(self.max + self.leeway), self.max + self.leeway)
         pulse = remap(angle, (-self.max, self.max), (self.min_pulse, self.max_pulse))
 
-        print repr(self), ':', 'pulse', pulse
+        #print repr(self), ':', 'pulse', pulse
 
         drive(self.channel, pulse)
         self.angle = angle
