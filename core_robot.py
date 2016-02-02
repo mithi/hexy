@@ -66,9 +66,6 @@ class HexapodCore:
 
         self.tripod1 = [self.left_front, self.right_middle, self.left_back]
         self.tripod2 = [self.right_front, self.left_middle, self.right_back]
-
-        self.front45 = [self.right_front, self.left_front, self.left_middle]
-        self.back45 = [self.left_back, self.right_back, self.right_middle]
         
         self.front_legs = [self.left_front, self.right_front]
         self.middle_legs = [self.left_middle, self.right_middle]
@@ -101,11 +98,11 @@ class Leg:
         self.name = name
         self.joints = [self.hip, self.knee, self.ankle]
 
-    def step(self, knee_end, hip_end = None):
+    def step(self, knee_end = None, hip_end = None):
         #knee_end < 0 means thigh is raised
-        
-        if hip_end == None:
-            hip_end = self.hip.angle
+
+        if knee_end == None: knee_end = self.knee.angle
+        if hip_end == None: hip_end = self.hip.angle
 
         self.move(hip_end, knee_end, knee_end - 90)
 
@@ -131,6 +128,7 @@ class Joint:
 
         angle = constrain(angle, -self.max, self.max)
         pulse = remap(angle, (-self.max, self.max), (self.min_pulse, self.max_pulse))
+
         print repr(self), ':', 'pulse', pulse
 
         drive(self.channel, pulse)
