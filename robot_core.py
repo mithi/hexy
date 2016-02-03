@@ -92,6 +92,12 @@ class Leg:
         self.name = name
         self.joints = [self.hip, self.knee, self.ankle]
 
+    def move(self, hip_end = 0, knee_end = 0, ankle_end = 0):
+
+        self.hip.move(hip_end)
+        self.knee.move(knee_end)
+        self.ankle.move(ankle_end)
+
     def step(self, knee_end = None, hip_end = None):
         #knee_end < 0 means thigh is raised
         
@@ -104,11 +110,12 @@ class Leg:
 
         self.move(hip_end, knee_end, knee_end - offset)
 
-    def move(self, hip_end = 0, knee_end = 0, ankle_end = 0):
+    def replant(self,leg, raised, end, offset, s):
 
-        self.hip.move(hip_end)
-        self.knee.move(knee_end)
-        self.ankle.move(ankle_end)
+        self.step(raised)
+        sleep(s)
+        self.step(end, offset)
+        sleep(s)
         
     def __repr__(self):
         return 'leg: ' + self.name
