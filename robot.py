@@ -23,7 +23,7 @@ class Hexapod(HexapodCore):
             self.uniform_tripod_step(self.tripod2, offset, floor, s)
 
             #raise tripod1 
-            self.uniform_tripod_step(self.tripod1, None, raised)
+            self.uniform_tripod_step(self.tripod1, -offset, raised)
 
             #swing tripod2's hips to an -offset
             self.uniform_tripod_step(self.tripod2, -offset, None, s) 
