@@ -27,14 +27,6 @@ print "walk offset = 25, hip_swing = -25 backward"
 hexy.walk(offset = 25, hip_swing = -25)
 sleep(s)
 
-print "walk offset = -25, hip_swing = 25 forward"
-hexy.walk(offset = -25, hip_swing = 25)
-sleep(s)
-
-print "walk offset = -25, hip_swing = -25 backward"
-hexy.walk(offset = -25, hip_swing = -25)
-sleep(s)
-
 hexy.twist_hip()
 hexy.lie_down()
 

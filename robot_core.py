@@ -95,7 +95,7 @@ class Leg:
     def step(self, knee_end = None, hip_end = None):
         #knee_end < 0 means thigh is raised
         
-        offset = 100
+        offset = 110
 
         if knee_end == None:
             knee_end = self.knee.angle

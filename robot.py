@@ -3,7 +3,7 @@ from time import sleep
 
 class Hexapod(HexapodCore):
 
-    def walk(self, offset = 25 , hip_swing =  25, raised = -30, floor = 60, repetitions = 4, s = 0.2):
+    def walk(self, offset = 25 , hip_swing =  25, raised = -30, floor = 50, repetitions = 4, s = 0.2):
         #if hip_swing > 0, hexy moves forward else backward
 
         swing = [offset - hip_swing, hip_swing, -(offset + hip_swing)]
@@ -15,7 +15,7 @@ class Hexapod(HexapodCore):
 
         self.pose_attention()
 
-    def rotate(self, offset = 40, raised = -30, floor = 60, repetitions = 4, s = 0.2):
+    def rotate(self, offset = 40, raised = -30, floor = 50, repetitions = 4, s = 0.2):
         
         for r in xrange(repetitions):
             #replant tripod2 with an offset
@@ -29,7 +29,7 @@ class Hexapod(HexapodCore):
             self.uniform_tripod_step(self.tripod2, -offset, None, s) 
 
             #lower tripod1   
-            self.uniform_tripod_step(self.tripod1, offset, floor, s)       
+            self.uniform_tripod_step(self.tripod1, 0, floor, s)
 
     def tilt_side(self, left_angle = 50, right_angle = 0, offset = 45, s = 0.1):
         # if left_angle > right_angle, left side will be higher than right side
@@ -84,20 +84,26 @@ class Hexapod(HexapodCore):
 
         sleep(s)
 
-    def get_up(self, maxx = 50, step = 4, s = 0.15):
+    def get_up(self, maxx = 70, step = 4, s = 0.15):
 
         for angle in xrange(-maxx, maxx + 1, step):
             self.step_all(angle)
 
         sleep(s)
 
-    def pose_attention(self, offset = 45, raised = -30, floor = 50, s = 0.2):
-
-        swing = [-offset, 0, offset]
-
-        self.stride(self.tripod1, self.tripod2[::-1], swing, raised, floor, s)
-        self.stride(self.tripod2, self.tripod1[::-1], swing, raised, floor, s)
-
+    def pose_attention(self, offset = 45, floor = 50, raised = -30,  s = 0.2):
+          
+        print "pose, attention"
+        swings = [offset, 0, -offset]
+        
+        self.step_all(floor)        
+        sleep(s)
+         
+        self.tripod_step(self.tripod1, swings, raised, s) 
+        self.tripod_step(self.tripod1, swings, floor, s)
+        self.tripod_step(self.tripod2[::-1], swings, raised, s)
+        self.tripod_step(self.tripod2[::-1], swings, floor, s)
+            
     def shake_head(self, repetitions = 5, maxx = 60,  s = 0.2):
 
         for r in xrange(5):
@@ -115,14 +121,20 @@ class Hexapod(HexapodCore):
         self.left_front.ankle.move(-55)
 
         sleep(s)
+    
+    def replant(self,leg, raised, end, offset, s):
 
-    def lean_back(self, offset = 45, back_knee = 0, middle_knee = 25, s = 0.3):
+        leg.step(raised)
+        sleep(s)
+        leg.step(end, offset)
+        sleep(s)
 
-        self.left_back.step(back_knee, offset)
-        self.right_back.step(back_knee, -offset)
-
-        self.left_middle.step(middle_knee, offset)
-        self.right_middle.step(middle_knee, -offset)
+    def lean_back(self, offset = 45, back_knee = 0, middle_knee = 40, raised = -30, s = 0.2):
+        
+        self.replant(self.left_back, raised, back_knee, offset, s)
+        self.replant(self.right_back, raised, back_knee, -offset, s)
+        self.replant(self.left_middle, raised, middle_knee, -offset, s)
+        self.replant(self.right_middle, raised, middle_knee, offset, s)
         
         self.left_front.move(-offset, 0, 0)
         self.right_front.move(offset, 0, 0)
@@ -181,6 +193,6 @@ class Hexapod(HexapodCore):
         self.tripod_step(tripod_a, [None, None, None], raised)
         sleep(s)
         
-        self.tripod_step(tripod_b, swing,)
+        self.tripod_step(tripod_b, swing, None)
         self.tripod_step(tripod_a, swing, floor)
         sleep(s)
