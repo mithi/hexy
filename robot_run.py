@@ -10,39 +10,49 @@ hexy =  Hexapod()
 hexy.lie_flat()
 hexy.curl_up()
 hexy.lie_flat()
+
 hexy.get_up()
 
-for angle in xrange(-40, 40, 5):
-    hexy.twist_hip(angle, 0.01)
+for i in xrange(2):
 
-for angle in xrange(40, -40, -5):
-    hexy.twist_hip(angle, 0.01)
+    for angle in xrange(-45, 45, 3):
+        hexy.twist_hip(angle, 0.01)
+
+    for angle in xrange(45, -45, -3):
+        hexy.twist_hip(angle, 0.01)
 
 hexy.twist_hip()
 
-print "offset = 40 forward"
-hexy.rotate(offset = 40)
+hexy.pose_attention()
+sleep(0.3)
 
-print "offset = -40 backward"
-hexy.rotate(offset = -40)
+hexy.type_stuff()
+sleep(0.3)
 
-'''
-print "offset = 25, hip_swing = 25 forward"
-hexy.walk(offset = 25, hip_swing = 25)
-sleep(s)
+hexy.pose_attention()
+sleep(0.3)
 
-print "offset = 25, hip_swing = -25 backward"
-hexy.walk(offset = 25, hip_swing = -25)
-sleep(s)
+hexy.shake_head()
+sleep(0.3)
 
-print "offset = -25, hip_swing = 25 forward"
-hexy.walk(offset = -25, hip_swing = 25)
-sleep(s)
+hexy.point()
+sleep(0.3)
 
-print "offset = -25, hip_swing = -25 backward"
-hexy.walk(offset = -25, hip_swing = -25)
-sleep(s)
-'''
+hexy.pose_attention()
+
+print "tilt right"
+hexy.tilt_side(left_angle = 50, right_angle = 0, s = 1)
+
+print "tilt left"
+hexy.tilt_side(left_angle = 0, right_angle = 50, s = 1)
+
+print "tilt front"
+hexy.tilt(front_angle = 0, middle_angle = 25, back_angle = 50, s = 1)
+
+print "tilt back"
+hexy.tilt(front_angle = 50, middle_angle = 25, back_angle = 25, s = 1)
+
+hexy.pose_attention()
 
 hexy.twist_hip()
 hexy.lie_down()

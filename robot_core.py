@@ -14,9 +14,9 @@ joint_properties = {
     'RFH': (3, 275, 425), 'RFK': (4, 227, 507), 'RFA': (5, 160, 625),
     'LMH': (6, 312, 457), 'LMK': (7, 251, 531), 'LMA': (8, 138, 598),
     'RMH': (9, 240, 390), 'RMK': (10, 230, 514), 'RMA': (11, 150, 620),
-    'LBH': (12, 315, 465), 'LBK': (13, 166, 466), 'LBA': (14, 140, 645),
+    'LBH': (12, 315, 465), 'LBK': (13, 166, 466), 'LBA': (14, 140, 620),
     'RBH': (15, 265, 415), 'RBK': (16, 244, 544), 'RBA': (17, 150, 676),
-    'N': (18, 105, 670)
+    'N': (18, 150, 650)
 }
 
 driver1 = PWM(0x40)
@@ -65,10 +65,6 @@ class HexapodCore:
         self.tripod1 = [self.left_front, self.right_middle, self.left_back]
         self.tripod2 = [self.right_front, self.left_middle, self.right_back]
         
-        self.front_legs = [self.left_front, self.right_front]
-        self.middle_legs = [self.left_middle, self.right_middle]
-        self.back_legs = [self.left_back, self.right_back]
-
         self.hips = []
         self.knees = []
         self.ankles = []

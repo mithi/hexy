@@ -1,4 +1,5 @@
 from robot import Hexapod
+from time import sleep
 
 def calibrate_joint(joint, s, mn, mx, z):
 
@@ -9,6 +10,6 @@ def calibrate_joint(joint, s, mn, mx, z):
             
 hexy = Hexapod()
 
-#calibrate_joint( hexy.left_back.knee, s = 2, mn = -40, mx = 40, z = 0)
+#calibrate_joint( hexy.neck, s = 2, mn = -90, mx = 90, z = 0)
 
 hexy.off()
