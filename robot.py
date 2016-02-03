@@ -121,20 +121,13 @@ class Hexapod(HexapodCore):
         self.left_front.ankle.move(-55)
 
         sleep(s)
-    
-    def replant(self,leg, raised, end, offset, s):
-
-        leg.step(raised)
-        sleep(s)
-        leg.step(end, offset)
-        sleep(s)
 
     def lean_back(self, offset = 45, back_knee = 0, middle_knee = 40, raised = -30, s = 0.2):
         
-        self.replant(self.left_back, raised, back_knee, offset, s)
-        self.replant(self.right_back, raised, back_knee, -offset, s)
-        self.replant(self.left_middle, raised, middle_knee, -offset, s)
-        self.replant(self.right_middle, raised, middle_knee, offset, s)
+        self.left_back.replant(raised, back_knee, offset, s)
+        self.right_back.replant(raised, back_knee, -offset, s)
+        self.left_middle.replant(raised, middle_knee, -offset, s)
+        self.right_middle.replant(raised, middle_knee, offset, s)
         
         self.left_front.move(-offset, 0, 0)
         self.right_front.move(offset, 0, 0)
