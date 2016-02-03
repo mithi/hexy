@@ -110,7 +110,7 @@ class Leg:
 
         self.move(hip_end, knee_end, knee_end - offset)
 
-    def replant(self,leg, raised, end, offset, s):
+    def replant(self, raised, end, offset, s):
 
         self.step(raised)
         sleep(s)
