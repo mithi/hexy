@@ -99,7 +99,7 @@ class Leg:
         self.knee.move(knee_end)
         self.ankle.move(ankle_end)
 
-    def step(self, knee_end = None, hip_end = None, offset = 110):
+    def step(self, knee_end = None, hip_end = None, offset = 100):
         """ knee_end < 0 means thigh is raised ankle's angle will be set
             to the specified knee angle minus the offset which is a value
             usually best between 80 and 110 """
@@ -135,7 +135,7 @@ class Joint:
         angle = constrain(angle, -(self.max + self.leeway), self.max + self.leeway)
         pulse = remap(angle, (-self.max, self.max), (self.min_pulse, self.max_pulse))
 
-        print repr(self), ':', 'pulse', pulse
+        #print repr(self), ':', 'pulse', pulse
 
         drive(self.channel, pulse)
         self.angle = angle

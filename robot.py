@@ -3,17 +3,17 @@ from time import sleep
 
 class Hexapod(HexapodCore):
 
-    def walk(self, offset = 25 , hip_swing =  25, raised = -30, floor = 50, repetitions = 4, s = 0.2):
+    def walk(self, offset = 25 , swing =  25, raised = -30, floor = 50, repetitions = 4, s = 0.2):
         """ if hip_swing > 0, hexy moves forward else backward
             ideal offset is a positive number (25)"""
         
 
-        swing = [offset - hip_swing, hip_swing, -(offset + hip_swing)]
-        reverse_swing = [-x for x in swing]
+        swings = [offset - swing, swing, -(offset + swing)]
+        reverse_swings = [-x for x in swings]
         
         for r in xrange(repetitions):
-            self.stride(self.tripod1, self.tripod2[::-1], swing, raised, floor, s)
-            self.stride(self.tripod2, self.tripod1[::-1], reverse_swing, raised, floor, s)
+            self.stride(self.tripod1, self.tripod2[::-1], swings, raised, floor, s)
+            self.stride(self.tripod2, self.tripod1[::-1], reverse_swings, raised, floor, s)
 
         self.pose_attention()
 
@@ -166,7 +166,7 @@ class Hexapod(HexapodCore):
     def uniform_step(self, legs, hip_angle, knee_angle, s = 0):
         """ steps all legs in list 'legs' using parameters hip_angle, knee_angle """
         
-        for leg in leg:
+        for leg in legs:
             leg.step(knee_angle, hip_angle)
 
         sleep(s)
