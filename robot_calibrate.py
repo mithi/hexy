@@ -10,6 +10,6 @@ def calibrate_joint(joint, s, mn, mx, z):
             
 hexy = Hexapod()
 
-#calibrate_joint( hexy.neck, s = 2, mn = -90, mx = 90, z = 0)
+#calibrate_joint( hexy.right_back.hip, s = 2, mn = -90, mx = 90, z = 0)
 
 hexy.off()
