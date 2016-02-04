@@ -15,7 +15,7 @@ joint_properties = {
     'LMH': (6, 312, 457), 'LMK': (7, 251, 531), 'LMA': (8, 138, 598),
     'RMH': (9, 240, 390), 'RMK': (10, 230, 514), 'RMA': (11, 150, 620),
     'LBH': (12, 315, 465), 'LBK': (13, 166, 466), 'LBA': (14, 140, 620),
-    'RBH': (15, 265, 415), 'RBK': (16, 244, 544), 'RBA': (17, 150, 676),
+    'RBH': (15, 320, 480), 'RBK': (16, 244, 544), 'RBA': (17, 150, 676),
     'N': (18, 150, 650)
 }
 
@@ -134,7 +134,7 @@ class Joint:
         angle = constrain(angle, -(self.max + self.leeway), self.max + self.leeway)
         pulse = remap(angle, (-self.max, self.max), (self.min_pulse, self.max_pulse))
 
-        #print repr(self), ':', 'pulse', pulse
+        print repr(self), ':', 'pulse', pulse
 
         drive(self.channel, pulse)
         self.angle = angle
