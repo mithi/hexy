@@ -2,11 +2,11 @@ from Adafruit_PWM_Servo_Driver import PWM
 from time import sleep
 import threading 
 
-# joint_key convention:
-# R - right, L - left
-# F - front, M - middle, B - back
-# H - hip, K - knee, A - Ankle
-# key : (channel, minimum_pulse_length, maximum_pulse_length)
+""" joint_key convention:
+    R - right, L - left
+    F - front, M - middle, B - back
+    H - hip, K - knee, A - Ankle
+    key : (channel, minimum_pulse_length, maximum_pulse_length) """
 
 joint_properties = {
 
@@ -15,7 +15,7 @@ joint_properties = {
     'LMH': (6, 312, 457), 'LMK': (7, 251, 531), 'LMA': (8, 138, 598),
     'RMH': (9, 240, 390), 'RMK': (10, 230, 514), 'RMA': (11, 150, 620),
     'LBH': (12, 315, 465), 'LBK': (13, 166, 466), 'LBA': (14, 140, 620),
-    'RBH': (15, 320, 480), 'RBK': (16, 244, 544), 'RBA': (17, 150, 676),
+    'RBH': (15, 320, 480), 'RBK': (16, 209, 499), 'RBA': (17, 150, 676),
     'N': (18, 150, 650)
 }
 
@@ -85,6 +85,7 @@ class Leg:
     def __init__(self, name, hip_key, knee_key, ankle_key):
 
         max_hip, max_knee, knee_leeway = 45, 50, 10
+        
         self.hip = Joint("hip", hip_key, max_hip)
         self.knee = Joint("knee", knee_key, max_knee, leeway = knee_leeway)
         self.ankle = Joint("ankle", ankle_key)
@@ -98,10 +99,10 @@ class Leg:
         self.knee.move(knee_end)
         self.ankle.move(ankle_end)
 
-    def step(self, knee_end = None, hip_end = None):
-        #knee_end < 0 means thigh is raised
-        
-        offset = 110
+    def step(self, knee_end = None, hip_end = None, offset = 110):
+        """ knee_end < 0 means thigh is raised ankle's angle will be set
+            to the specified knee angle minus the offset which is a value
+            usually best between 80 and 110 """
 
         if knee_end == None:
             knee_end = self.knee.angle
@@ -110,7 +111,7 @@ class Leg:
 
         self.move(hip_end, knee_end, knee_end - offset)
 
-    def replant(self, raised, end, offset, s):
+    def replant(self, raised, end, offset, s = 0.1):
 
         self.step(raised)
         sleep(s)
