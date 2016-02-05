@@ -25,7 +25,7 @@ class Hexapod(HexapodCore):
         self.off()
         sleep(4*s)
         self.pose_attention()
-        sleep(s)
+        sleep(2*s)
 
     def walk(self, offset = 25 , swing =  25, raised = -30, floor = 50, repetitions = 4, s = 0.2):
         """ if hip_swing > 0, hexy moves forward else backward
@@ -162,6 +162,14 @@ class Hexapod(HexapodCore):
         self.swing_step(self.tripod1, swings, floor, s)
         self.swing_step(self.tripod2[::-1], swings, raised, s)
         self.swing_step(self.tripod2[::-1], swings, floor, s)
+
+    def rock_body(self,  offset = 45, floor = 50, repetitions = 7):
+
+        for r in xrange(repetitions):
+            self.uniform_step(self.tripod2, offset, floor, s = 0)
+            self.uniform_step(self.tripod1, -offset, floor, s = 0.2)
+            self.uniform_step(self.tripod2, -offset, floor, s = 0)
+            self.uniform_step(self.tripod1, offset, floor, s = 0.2)
             
     def shake_head(self, maxx = 60, repetitions = 5, s = 0.2):
 
@@ -191,7 +199,6 @@ class Hexapod(HexapodCore):
             self.left_front.hip.move(45)
             sleep(s)
         
-
     def lean_back(self, offset = 45, back_knee = 0, middle_knee = 40, raised = -30, s = 0.2):
         """ brings the back legs even further to the back and the middle legs to the front
             and then brings his front legs up in the air """ 
