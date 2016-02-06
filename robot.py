@@ -12,7 +12,6 @@ class Hexapod(HexapodCore):
 
     def shut_down(self):
 
-        self.twist_hip()
         self.lie_down()
         self.lie_flat()
         self.curl_up()
