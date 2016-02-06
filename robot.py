@@ -92,8 +92,8 @@ class Hexapod(HexapodCore):
     def dance_tilt(self, repetitions = 2):
 
         for r in xrange(repetitions):
-           self.dance_tilt_cw()
-           self.dance_tilt_ccw()
+           self.dance_tilt_cw(repetitions = 1)
+           self.dance_tilt_ccw(repetitions = 1)
     
     def tilt_side(self, left_angle = 50, right_angle = 0, s = 0.2):
         """ if left_angle > right_angle, left side is higher than right side """
