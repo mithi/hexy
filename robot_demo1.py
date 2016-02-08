@@ -23,5 +23,5 @@ print "walk backward"
 hexy.walk(offset = 25, swing = -25)
 hexy.rest()
 
-print "lie down, lie flat, and die"
+print "lie down, lie flat, curl up, and die"
 hexy.shut_down()
