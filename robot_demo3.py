@@ -36,17 +36,17 @@ class DancingHexapod(Hexapod):
         
     def dip_body(self):
         
-        self.left_middle.step(knee_angle = 30)
-        self.right_middle.step(knee_angle = 30)
-        self.left_back.step(knee_angle = -10)
-        self.right_back.step(knee_angle = -10)
+        self.left_middle.move(knee_angle = 30)
+        self.right_middle.move(knee_angle = 30)
+        self.left_back.move(knee_angle = -10)
+        self.right_back.move(knee_angle = -10)
 
     def raise_body(self):
         
-        self.left_middle.step(knee_angle = 40)
-        self.right_middle.step(knee_angle = 40)
-        self.left_back.step(knee_angle = 0)
-        self.right_back.step(knee_angle = 0)
+        self.left_middle.move(knee_angle = 40)
+        self.right_middle.move(knee_angle = 40)
+        self.left_back.move(knee_angle = 0)
+        self.right_back.move(knee_angle = 0)
 
     def night_fever(self):
 
@@ -54,11 +54,11 @@ class DancingHexapod(Hexapod):
         
         for r in xrange(4):
             self.wave_right_arm_up()
-            self.left_front.step(knee_angle = 40)
+            self.left_front.move(knee_angle = 40)
             self.dip_body()
             sleep(0.4)
             self.wave_right_arm_down()
-            self.left_front.step(knee_angle = 60)
+            self.left_front.move(knee_angle = 60)
             self.raise_body()
             sleep(0.4)
 

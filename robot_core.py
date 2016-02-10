@@ -103,7 +103,7 @@ class Leg:
         self.knee.pose(knee_angle)
         self.ankle.pose(ankle_angle)
 
-    def step(self, knee_angle = None, hip_angle = None, offset = 100):
+    def move(self, knee_angle = None, hip_angle = None, offset = 100):
         """ knee_angle < 0 means thigh is raised, ankle's angle will be set to the specified 
             knee angle minus the offset which is a value usually best between 80 and 110 """
 
@@ -116,9 +116,9 @@ class Leg:
 
     def replant(self, raised, floor, offset, s = 0.1):
 
-        self.step(knee_angle = raised)
+        self.move(knee_angle = raised)
         sleep(s)
-        self.step(knee_angle = floor, hip_angle = offset)
+        self.move(knee_angle = floor, hip_angle = offset)
         sleep(s)
         
     def __repr__(self):

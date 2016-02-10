@@ -96,24 +96,24 @@ class Hexapod(HexapodCore):
         """ if left_angle > right_angle, left side is higher than right side """
             
         for leg in self.left_legs:
-            leg.step(knee_angle = left_angle)
+            leg.move(knee_angle = left_angle)
 
         for leg in self.right_legs:
-            leg.step(knee_angle = right_angle)
+            leg.move(knee_angle = right_angle)
 
         sleep(s)
 
     def tilt(self, front_angle = 50, middle_angle = 25, back_angle = 0, s = 0.2):
         """ if front_angle > middle_angle > back_angle hexy's front is higher than his back """
 
-        self.right_front.step(knee_angle = front_angle)
-        self.left_front.step(knee_angle = front_angle)
+        self.right_front.move(knee_angle = front_angle)
+        self.left_front.move(knee_angle = front_angle)
 
-        self.right_middle.step(knee_angle = middle_angle)
-        self.left_middle.step(knee_angle = middle_angle)
+        self.right_middle.move(knee_angle = middle_angle)
+        self.left_middle.move(knee_angle = middle_angle)
 
-        self.right_back.step(knee_angle = back_angle)
-        self.left_back.step(knee_angle = back_angle)
+        self.right_back.move(knee_angle = back_angle)
+        self.left_back.move(knee_angle = back_angle)
 
         sleep(s)
 
@@ -247,13 +247,13 @@ class Hexapod(HexapodCore):
     def step_all(self, knee_angle):
         
         for leg in self.legs:
-            leg.step(knee_angle)
+            leg.move(knee_angle)
 
     def uniform_step(self, legs, hip_angle, knee_angle, s = 0):
         """ steps all legs in list 'legs' using parameters hip_angle, knee_angle """
         
         for leg in legs:
-            leg.step(knee_angle, hip_angle)
+            leg.move(knee_angle, hip_angle)
 
         sleep(s)
 
@@ -262,7 +262,7 @@ class Hexapod(HexapodCore):
             to the respective hip_angles specified at list 'swing' """
         
         for leg, hip_angle in zip(legs, swings):
-            leg.step(knee_angle, hip_angle)
+            leg.move(knee_angle, hip_angle)
 
         sleep(s)
             
