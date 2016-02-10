@@ -17,14 +17,12 @@ class Hexapod(HexapodCore):
         self.curl_up()
         self.off()
 
-    def rest(self, s = 0.5):
+    def rest(self, knee_angle = 50, s = 0.3):
         
+        self.step_all(knee_angle)
+        sleep(s)
         self.pose_attention()
         sleep(s)
-        self.off()
-        sleep(4*s)
-        self.pose_attention()
-        sleep(2*s)
 
     def walk(self, offset = 25 , swing =  25, raised = -30, floor = 50, repetitions = 4, s = 0.2):
         """ if hip_swing > 0, hexy moves forward else backward
@@ -189,6 +187,7 @@ class Hexapod(HexapodCore):
         sleep(s)
 
     def wave(self, repetitions = 5, s = 0.2):
+        
         self.left_front.ankle.move()
         self.left_front.knee.move(-50)
         
@@ -225,12 +224,16 @@ class Hexapod(HexapodCore):
             self.right_front.knee.move(up)
             self.left_front.knee.move(down)
             sleep(s)
+        
+        sleep(s)
 
     def twist_hip_slowly(self, maxx = 45, step = 5, repetitions = 3, s = 0.01):
 
         for r in xrange(repetitions):
+            
             for angle in xrange(-maxx, maxx, step):
                 self.twist_hip(angle, s)
+            
             for angle in xrange(maxx, -maxx, -step):
                 self.twist_hip(angle, s)
 
@@ -241,10 +244,10 @@ class Hexapod(HexapodCore):
 
         sleep(s)
         
-    def step_all(self, angle):
+    def step_all(self, knee_angle):
         
         for leg in self.legs:
-            leg.step(angle)
+            leg.step(knee_angle)
 
     def uniform_step(self, legs, hip_angle, knee_angle, s = 0):
         """ steps all legs in list 'legs' using parameters hip_angle, knee_angle """
