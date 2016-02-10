@@ -97,11 +97,11 @@ class Leg:
         self.name = name
         self.joints = [self.hip, self.knee, self.ankle]
 
-    def move(self, hip_angle = 0, knee_angle = 0, ankle_angle = 0):
+    def pose(self, hip_angle = 0, knee_angle = 0, ankle_angle = 0):
 
-        self.hip.move(hip_angle)
-        self.knee.move(knee_angle)
-        self.ankle.move(ankle_angle)
+        self.hip.pose(hip_angle)
+        self.knee.pose(knee_angle)
+        self.ankle.pose(ankle_angle)
 
     def step(self, knee_angle = None, hip_angle = None, offset = 100):
         """ knee_angle < 0 means thigh is raised, ankle's angle will be set to the specified 
@@ -112,7 +112,7 @@ class Leg:
         if hip_angle == None:
             hip_angle = self.hip.angle
 
-        self.move(hip_angle, knee_angle, knee_angle - offset)
+        self.pose(hip_angle, knee_angle, knee_angle - offset)
 
     def replant(self, raised, floor, offset, s = 0.1):
 
@@ -134,7 +134,7 @@ class Joint:
         self.max, self.leeway = maxx, leeway
         self.off()
 
-    def move(self, angle = 0):
+    def pose(self, angle = 0):
 
         angle = constrain(angle, -(self.max + self.leeway), self.max + self.leeway)
         pulse = remap(angle, (-self.max, self.max), (self.min_pulse, self.max_pulse))

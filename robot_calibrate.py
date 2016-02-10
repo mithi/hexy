@@ -5,7 +5,7 @@ def calibrate_joint(joint, s, mn, mx, z):
 
     while True:
         for angle in [mn, z, mx, z]:
-            joint.move(angle)
+            joint.pose(angle)
             sleep(s)
             
 hexy = Hexapod()

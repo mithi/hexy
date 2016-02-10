@@ -17,22 +17,22 @@ class DancingHexapod(Hexapod):
         self.left_front.replant(raised, front_knee, -offset, s)
         self.right_front.replant(raised, front_knee, offset, s)
 
-        self.neck.move()
+        self.neck.pose()
 
         sleep(s)
         
     def wave_right_arm_up(self):
     
-        self.right_front.knee.move(-60)
-        self.right_front.ankle.move(0)
-        self.right_front.hip.move(-45)
-        hexy.neck.move(-40)
+        self.right_front.knee.pose(-60)
+        self.right_front.ankle.pose(0)
+        self.right_front.hip.pose(-45)
+        hexy.neck.pose(-40)
 
     def wave_right_arm_down(self):
-        self.right_front.knee.move(50)
-        self.right_front.ankle.move(-50)
-        self.right_front.hip.move(45)
-        hexy.neck.move(0)
+        self.right_front.knee.pose(50)
+        self.right_front.ankle.pose(-50)
+        self.right_front.hip.pose(45)
+        hexy.neck.pose(0)
         
     def dip_body(self):
         
@@ -63,19 +63,19 @@ class DancingHexapod(Hexapod):
             sleep(0.4)
 
     def arms_up_left(self):
-        self.right_front.move(knee_angle = -60, ankle_angle = -80, hip_angle = -45)
-        self.left_front.move(knee_angle = -60, ankle_angle = -80, hip_angle = -45)
-        self.neck.move(-45)
+        self.right_front.pose(knee_angle = -60, ankle_angle = -80, hip_angle = -45)
+        self.left_front.pose(knee_angle = -60, ankle_angle = -80, hip_angle = -45)
+        self.neck.pose(-45)
 
     def arms_up_right(self):
-        self.right_front.move(knee_angle = -60, ankle_angle = -80, hip_angle = 45)
-        self.left_front.move(knee_angle = -60, ankle_angle = -80, hip_angle = 45)
-        self.neck.move(45)
+        self.right_front.pose(knee_angle = -60, ankle_angle = -80, hip_angle = 45)
+        self.left_front.pose(knee_angle = -60, ankle_angle = -80, hip_angle = 45)
+        self.neck.pose(45)
 
     def arms_down_center(self):
-        self.right_front.move(knee_angle = 30, ankle_angle = -60, hip_angle = 0)
-        self.left_front.move(knee_angle = 30, ankle_angle = -60, hip_angle = 0)
-        self.neck.move()
+        self.right_front.pose(knee_angle = 30, ankle_angle = -60, hip_angle = 0)
+        self.left_front.pose(knee_angle = 30, ankle_angle = -60, hip_angle = 0)
+        self.neck.pose()
 
     def thriller_routine0(self):
         self.arms_down_center()

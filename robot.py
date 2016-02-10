@@ -120,9 +120,9 @@ class Hexapod(HexapodCore):
     def curl_up(self, s = 0.2, die = False):
 
         for leg in self.legs:
-            leg.hip.move(0)
-            leg.knee.move(-(leg.knee.max + leg.knee.leeway))
-            leg.ankle.move(leg.ankle.max)
+            leg.hip.pose(0)
+            leg.knee.pose(-(leg.knee.max + leg.knee.leeway))
+            leg.ankle.pose(leg.ankle.max)
 
         sleep(s)
 
@@ -131,7 +131,7 @@ class Hexapod(HexapodCore):
     def lie_flat(self, s = 0.15):
         
         for leg in self.legs:
-            leg.move()
+            leg.pose()
             
         sleep(s)
 
@@ -171,30 +171,30 @@ class Hexapod(HexapodCore):
     def shake_head(self, maxx = 60, repetitions = 5, s = 0.2):
 
         for r in xrange(repetitions):
-            self.neck.move(maxx)
+            self.neck.pose(maxx)
             sleep(s)
-            self.neck.move(-maxx)
+            self.neck.pose(-maxx)
             sleep(s)
 
-        self.neck.move()
+        self.neck.pose()
 
     def point(self, s = 0.15):
         
-        self.left_front.hip.move(-45)
-        self.left_front.knee.move(-50)
-        self.left_front.ankle.move(-55)
+        self.left_front.hip.pose(-45)
+        self.left_front.knee.pose(-50)
+        self.left_front.ankle.pose(-55)
 
         sleep(s)
 
     def wave(self, repetitions = 5, s = 0.2):
         
-        self.left_front.ankle.move()
-        self.left_front.knee.move(-50)
+        self.left_front.ankle.pose()
+        self.left_front.knee.pose(-50)
         
         for r in xrange(repetitions):
-            self.left_front.hip.move(-45)
+            self.left_front.hip.pose(-45)
             sleep(s)
-            self.left_front.hip.move(45)
+            self.left_front.hip.pose(45)
             sleep(s)
         
     def lean_back(self, offset = 45, back_knee = 0, middle_knee = 40, raised = -30, s = 0.2):
@@ -206,8 +206,8 @@ class Hexapod(HexapodCore):
         self.left_middle.replant(raised, middle_knee, -offset, s)
         self.right_middle.replant(raised, middle_knee, offset, s)
         
-        self.left_front.move(-offset, 0, 0)
-        self.right_front.move(offset, 0, 0)
+        self.left_front.pose(-offset, 0, 0)
+        self.right_front.pose(offset, 0, 0)
 
         sleep(s)
 
@@ -217,12 +217,12 @@ class Hexapod(HexapodCore):
 
         for r in xrange(repetitions):
 
-            self.left_front.knee.move(up)
-            self.right_front.knee.move(down)
+            self.left_front.knee.pose(up)
+            self.right_front.knee.pose(down)
             sleep(s)
 
-            self.right_front.knee.move(up)
-            self.left_front.knee.move(down)
+            self.right_front.knee.pose(up)
+            self.left_front.knee.pose(down)
             sleep(s)
         
         sleep(s)
@@ -240,7 +240,7 @@ class Hexapod(HexapodCore):
     def twist_hip(self, angle = 0, s = 0.1):
 
         for hip in self.hips:
-            hip.move(angle)
+            hip.pose(angle)
 
         sleep(s)
         
