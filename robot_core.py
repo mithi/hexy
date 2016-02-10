@@ -8,7 +8,6 @@ import threading
     H - hip, K - knee, A - Ankle
     key : (channel, minimum_pulse_length, maximum_pulse_length) """
 
-
 joint_properties = {
 
     'LFH': (0, 248, 398), 'LFK': (1, 188, 476), 'LFA': (2, 131, 600),
@@ -19,7 +18,6 @@ joint_properties = {
     'RBH': (15, 320, 480), 'RBK': (16, 209, 499), 'RBA': (17, 150, 676),
     'N': (18, 150, 650)
 }
-
 
 driver1 = PWM(0x40)
 driver2 = PWM(0x41)
@@ -34,6 +32,7 @@ def drive(ch, val):
     ch = ch if ch < 16 else ch - 16    
 
     driver.setPWM(ch, 0, val)
+
 
 def constrain(val, min_val, max_val):
 
@@ -105,9 +104,8 @@ class Leg:
         self.ankle.move(ankle_end)
 
     def step(self, knee_end = None, hip_end = None, offset = 100):
-        """ knee_end < 0 means thigh is raised ankle's angle will be set
-            to the specified knee angle minus the offset which is a value
-            usually best between 80 and 110 """
+        """ knee_end < 0 means thigh is raised, ankle's angle will be set to the specified 
+            knee angle minus the offset which is a value usually best between 80 and 110 """
 
         if knee_end == None:
             knee_end = self.knee.angle
@@ -116,11 +114,11 @@ class Leg:
 
         self.move(hip_end, knee_end, knee_end - offset)
 
-    def replant(self, raised, end, offset, s = 0.1):
+    def replant(self, raised, floor, offset, s = 0.1):
 
-        self.step(raised)
+        self.step(knee_end = raised)
         sleep(s)
-        self.step(end, offset)
+        self.step(knee_end = floor, hip_end = offset)
         sleep(s)
         
     def __repr__(self):
@@ -141,10 +139,10 @@ class Joint:
         angle = constrain(angle, -(self.max + self.leeway), self.max + self.leeway)
         pulse = remap(angle, (-self.max, self.max), (self.min_pulse, self.max_pulse))
 
-        #print repr(self), ':', 'pulse', pulse
-
         drive(self.channel, pulse)
         self.angle = angle
+        
+        #print repr(self), ':', 'pulse', pulse
 
     def off(self):
         drive(self.channel, 0)
