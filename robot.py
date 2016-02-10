@@ -19,7 +19,7 @@ class Hexapod(HexapodCore):
 
     def rest(self, knee_angle = 50, s = 0.3):
         
-        self.step_all(knee_angle)
+        self.squat(knee_angle)
         sleep(s)
         self.pose_attention()
         sleep(s)
@@ -138,14 +138,14 @@ class Hexapod(HexapodCore):
     def lie_down(self, maxx = 50, step = 4, s = 0.15):
         
         for angle in xrange(maxx, -(maxx + 1), -step):
-            self.step_all(angle)
+            self.squat(angle)
 
         sleep(s)
 
     def get_up(self, maxx = 70, step = 4, s = 0.15):
 
         for angle in xrange(-maxx, maxx + 1, step):
-            self.step_all(angle)
+            self.squat(angle)
 
         self.pose_attention()
         sleep(s)
@@ -244,7 +244,7 @@ class Hexapod(HexapodCore):
 
         sleep(s)
         
-    def step_all(self, knee_angle):
+    def squat(self, knee_angle):
         
         for leg in self.legs:
             leg.move(knee_angle)
