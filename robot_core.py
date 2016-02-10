@@ -8,6 +8,7 @@ import threading
     H - hip, K - knee, A - Ankle
     key : (channel, minimum_pulse_length, maximum_pulse_length) """
 
+
 joint_properties = {
 
     'LFH': (0, 248, 398), 'LFK': (1, 188, 476), 'LFA': (2, 131, 600),
@@ -19,10 +20,13 @@ joint_properties = {
     'N': (18, 150, 650)
 }
 
+
 driver1 = PWM(0x40)
 driver2 = PWM(0x41)
+
 driver1.setPWMFreq(60)
 driver2.setPWMFreq(60)
+
 
 def drive(ch, val):
 
@@ -37,10 +41,12 @@ def constrain(val, min_val, max_val):
     if val > max_val: return max_val
     return val
 
+
 def remap(old_val, (old_min, old_max), (new_min, new_max)):
 
     new_diff = (new_max - new_min)*(old_val - old_min) / float((old_max - old_min))
     return int(round(new_diff)) + new_min 
+
 
 class HexapodCore:
 
@@ -65,9 +71,7 @@ class HexapodCore:
         self.tripod1 = [self.left_front, self.right_middle, self.left_back]
         self.tripod2 = [self.right_front, self.left_middle, self.right_back]
         
-        self.hips = []
-        self.knees = []
-        self.ankles = []
+        self.hips, self.knees, self.ankles = [], [], []
 
         for leg in self.legs:
             self.hips.append(leg.hip)
@@ -79,6 +83,7 @@ class HexapodCore:
         for leg in self.legs:
             for joint in leg.joints:
                 joint.off()
+
 
 class Leg:
 
@@ -120,6 +125,7 @@ class Leg:
         
     def __repr__(self):
         return 'leg: ' + self.name
+
 
 class Joint:
 
