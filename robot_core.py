@@ -97,28 +97,28 @@ class Leg:
         self.name = name
         self.joints = [self.hip, self.knee, self.ankle]
 
-    def move(self, hip_end = 0, knee_end = 0, ankle_end = 0):
+    def move(self, hip_angle = 0, knee_angle = 0, ankle_angle = 0):
 
-        self.hip.move(hip_end)
-        self.knee.move(knee_end)
-        self.ankle.move(ankle_end)
+        self.hip.move(hip_angle)
+        self.knee.move(knee_angle)
+        self.ankle.move(ankle_angle)
 
-    def step(self, knee_end = None, hip_end = None, offset = 100):
-        """ knee_end < 0 means thigh is raised, ankle's angle will be set to the specified 
+    def step(self, knee_angle = None, hip_angle = None, offset = 100):
+        """ knee_angle < 0 means thigh is raised, ankle's angle will be set to the specified 
             knee angle minus the offset which is a value usually best between 80 and 110 """
 
-        if knee_end == None:
-            knee_end = self.knee.angle
-        if hip_end == None:
-            hip_end = self.hip.angle
+        if knee_angle == None:
+            knee_angle = self.knee.angle
+        if hip_angle == None:
+            hip_angle = self.hip.angle
 
-        self.move(hip_end, knee_end, knee_end - offset)
+        self.move(hip_angle, knee_angle, knee_angle - offset)
 
     def replant(self, raised, floor, offset, s = 0.1):
 
-        self.step(knee_end = raised)
+        self.step(knee_angle = raised)
         sleep(s)
-        self.step(knee_end = floor, hip_end = offset)
+        self.step(knee_angle = floor, hip_angle = offset)
         sleep(s)
         
     def __repr__(self):

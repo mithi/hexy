@@ -36,17 +36,17 @@ class DancingHexapod(Hexapod):
         
     def dip_body(self):
         
-        self.left_middle.step(knee_end = 30)
-        self.right_middle.step(knee_end = 30)
-        self.left_back.step(knee_end = -10)
-        self.right_back.step(knee_end = -10)
+        self.left_middle.step(knee_angle = 30)
+        self.right_middle.step(knee_angle = 30)
+        self.left_back.step(knee_angle = -10)
+        self.right_back.step(knee_angle = -10)
 
     def raise_body(self):
         
-        self.left_middle.step(knee_end = 40)
-        self.right_middle.step(knee_end = 40)
-        self.left_back.step(knee_end = 0)
-        self.right_back.step(knee_end = 0)
+        self.left_middle.step(knee_angle = 40)
+        self.right_middle.step(knee_angle = 40)
+        self.left_back.step(knee_angle = 0)
+        self.right_back.step(knee_angle = 0)
 
     def night_fever(self):
 
@@ -54,27 +54,27 @@ class DancingHexapod(Hexapod):
         
         for r in xrange(4):
             self.wave_right_arm_up()
-            self.left_front.step(knee_end = 40)
+            self.left_front.step(knee_angle = 40)
             self.dip_body()
             sleep(0.4)
             self.wave_right_arm_down()
-            self.left_front.step(knee_end = 60)
+            self.left_front.step(knee_angle = 60)
             self.raise_body()
             sleep(0.4)
 
     def arms_up_left(self):
-        self.right_front.move(knee_end = -60, ankle_end = -80, hip_end = -45)
-        self.left_front.move(knee_end = -60, ankle_end = -80, hip_end = -45)
+        self.right_front.move(knee_angle = -60, ankle_angle = -80, hip_angle = -45)
+        self.left_front.move(knee_angle = -60, ankle_angle = -80, hip_angle = -45)
         self.neck.move(-45)
 
     def arms_up_right(self):
-        self.right_front.move(knee_end = -60, ankle_end = -80, hip_end = 45)
-        self.left_front.move(knee_end = -60, ankle_end = -80, hip_end = 45)
+        self.right_front.move(knee_angle = -60, ankle_angle = -80, hip_angle = 45)
+        self.left_front.move(knee_angle = -60, ankle_angle = -80, hip_angle = 45)
         self.neck.move(45)
 
     def arms_down_center(self):
-        self.right_front.move(knee_end = 30, ankle_end = -60, hip_end = 0)
-        self.left_front.move(knee_end = 30, ankle_end = -60, hip_end = 0)
+        self.right_front.move(knee_angle = 30, ankle_angle = -60, hip_angle = 0)
+        self.left_front.move(knee_angle = 30, ankle_angle = -60, hip_angle = 0)
         self.neck.move()
 
     def thriller_routine0(self):

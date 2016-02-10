@@ -96,24 +96,24 @@ class Hexapod(HexapodCore):
         """ if left_angle > right_angle, left side is higher than right side """
             
         for leg in self.left_legs:
-            leg.step(knee_end = left_angle)
+            leg.step(knee_angle = left_angle)
 
         for leg in self.right_legs:
-            leg.step(knee_end = right_angle)
+            leg.step(knee_angle = right_angle)
 
         sleep(s)
 
     def tilt(self, front_angle = 50, middle_angle = 25, back_angle = 0, s = 0.2):
         """ if front_angle > middle_angle > back_angle hexy's front is higher than his back """
 
-        self.right_front.step(knee_end = front_angle)
-        self.left_front.step(knee_end = front_angle)
+        self.right_front.step(knee_angle = front_angle)
+        self.left_front.step(knee_angle = front_angle)
 
-        self.right_middle.step(knee_end = middle_angle)
-        self.left_middle.step(knee_end = middle_angle)
+        self.right_middle.step(knee_angle = middle_angle)
+        self.left_middle.step(knee_angle = middle_angle)
 
-        self.right_back.step(knee_end = back_angle)
-        self.left_back.step(knee_end = back_angle)
+        self.right_back.step(knee_angle = back_angle)
+        self.left_back.step(knee_angle = back_angle)
 
         sleep(s)
 
