@@ -44,17 +44,17 @@ class Hexapod(HexapodCore):
         for r in xrange(repetitions):
             
             #replant tripod2 with an offset
-            self.uniform_step(self.tripod2, None, raised, s)
-            self.uniform_step(self.tripod2, offset, floor, s)
+            self.uniform_move(self.tripod2, None, raised, s)
+            self.uniform_move(self.tripod2, offset, floor, s)
 
             #raise tripod1 
-            self.uniform_step(self.tripod1, -offset, raised)
+            self.uniform_move(self.tripod1, -offset, raised)
 
             #swing tripod2's hips to an -offset
-            self.uniform_step(self.tripod2, -offset, None, s) 
+            self.uniform_move(self.tripod2, -offset, None, s) 
 
             #lower tripod1   
-            self.uniform_step(self.tripod1, 0, floor, s)
+            self.uniform_move(self.tripod1, 0, floor, s)
 
     def tilt_left_and_right(self, floor = 50, raised = 0, repetitions = 5):
         
@@ -163,10 +163,10 @@ class Hexapod(HexapodCore):
     def rock_body(self,  offset = 45, floor = 50, repetitions = 7):
 
         for r in xrange(repetitions):
-            self.uniform_step(self.tripod2, offset, floor, s = 0)
-            self.uniform_step(self.tripod1, -offset, floor, s = 0.2)
-            self.uniform_step(self.tripod2, -offset, floor, s = 0)
-            self.uniform_step(self.tripod1, offset, floor, s = 0.2)
+            self.uniform_move(self.tripod2, offset, floor, s = 0)
+            self.uniform_move(self.tripod1, -offset, floor, s = 0.2)
+            self.uniform_move(self.tripod2, -offset, floor, s = 0)
+            self.uniform_move(self.tripod1, offset, floor, s = 0.2)
             
     def shake_head(self, maxx = 60, repetitions = 5, s = 0.2):
 
@@ -249,7 +249,7 @@ class Hexapod(HexapodCore):
         for leg in self.legs:
             leg.move(knee_angle)
 
-    def uniform_step(self, legs, hip_angle, knee_angle, s = 0):
+    def uniform_move(self, legs, hip_angle, knee_angle, s = 0):
         """ steps all legs in list 'legs' using parameters hip_angle, knee_angle """
         
         for leg in legs:
