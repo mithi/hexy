@@ -155,10 +155,10 @@ class Hexapod(HexapodCore):
           
         swings = [offset, 0, -offset]
  
-        self.swing_step(self.tripod1, swings, raised, s) 
-        self.swing_step(self.tripod1, swings, floor, s)
-        self.swing_step(self.tripod2[::-1], swings, raised, s)
-        self.swing_step(self.tripod2[::-1], swings, floor, s)
+        self.simultaneous_move(self.tripod1, swings, raised, s) 
+        self.simultaneous_move(self.tripod1, swings, floor, s)
+        self.simultaneous_move(self.tripod2[::-1], swings, raised, s)
+        self.simultaneous_move(self.tripod2[::-1], swings, floor, s)
 
     def rock_body(self,  offset = 45, floor = 50, repetitions = 7):
 
@@ -257,7 +257,7 @@ class Hexapod(HexapodCore):
 
         sleep(s)
 
-    def swing_step(self, legs, swings, knee_angle = None, s = 0):
+    def simultaneous_move(self, legs, swings, knee_angle = None, s = 0):
         """ moves all legs in list 'legs' tripod to a uniform knee_angle and
             to the respective hip_angles specified at list 'swing' """
         
@@ -271,9 +271,9 @@ class Hexapod(HexapodCore):
             at list 'swing' by raising at a knee_angle of 'raised' to a knee_angle of 'floor'
             while swinging all legs list 'tripod_b' to the same hip angles of 'tripod_a'"""
 
-        self.swing_step(tripod_a, [None, None, None], raised)
+        self.simultaneous_move(tripod_a, [None, None, None], raised)
         sleep(s)
         
-        self.swing_step(tripod_b, swing, None)
-        self.swing_step(tripod_a, swing, floor)
+        self.simultaneous_move(tripod_b, swing, None)
+        self.simultaneous_move(tripod_a, swing, floor)
         sleep(s)
