@@ -111,8 +111,8 @@ class Hexapod(HexapodCore):
         self.look()
         self.simultaneous_move(self.tripod1, swings, raised, s) 
         self.simultaneous_move(self.tripod1, swings, floor, s)
-        self.simultaneous_move(self.tripod2[::-1], swings, raised, s)
-        self.simultaneous_move(self.tripod2[::-1], swings, floor, s)
+        self.simultaneous_move(self.tripod2, swings, raised, s)
+        self.simultaneous_move(self.tripod2, swings, floor, s)
 
     def uniform_move(self, legs, hip_angle = None, knee_angle = None, s = 0):
         """ moves all legs in 'legs' using parameters hip_angle, knee_angle """
