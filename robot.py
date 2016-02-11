@@ -4,7 +4,8 @@ from time import sleep
 class Hexapod(HexapodCore):
 
     def boot_up(self):
-        
+  
+        self.look()
         self.lie_down()
         self.curl_up()
         self.lie_flat()
@@ -12,6 +13,7 @@ class Hexapod(HexapodCore):
 
     def shut_down(self):
 
+        self.look()
         self.lie_down()
         self.lie_flat()
         self.curl_up(die = True)
@@ -56,7 +58,7 @@ class Hexapod(HexapodCore):
         self.squat(knee_angle, s)    
         self.pose_default()
 
-    def look(self, angle = 0, s = 0.1):
+    def look(self, angle = 0, s = 0.05):
         self.neck.pose(angle)
         sleep(s)
 
@@ -106,7 +108,7 @@ class Hexapod(HexapodCore):
         """ default pose of the hexapod, offset > 0 brings the front and back legs to the side """ 
           
         swings = [offset, 0, -offset]
- 
+        self.look()
         self.simultaneous_move(self.tripod1, swings, raised, s) 
         self.simultaneous_move(self.tripod1, swings, floor, s)
         self.simultaneous_move(self.tripod2[::-1], swings, raised, s)
