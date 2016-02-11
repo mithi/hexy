@@ -18,7 +18,7 @@ class Hexapod(HexapodCore):
         self.lie_flat()
         self.curl_up(die = True)
 
-    def curl_up(self, t = 0.2, die = False):
+    def curl_up(self, die = False, t = 0.2):
 
         for leg in self.legs:
             leg.pose(hip_angle = 0, 
