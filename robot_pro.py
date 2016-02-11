@@ -92,18 +92,7 @@ class HexapodPro(Hexapod):
 
         self.squat(up, t)
     
-    def dance_tilt_ccw(self, raised = 60, mid = 40, floor = 20, repetitions = 3, t = 0.15):
-
-        for r in xrange(repetitions):
-            
-            self.tilt(floor, mid, raised, t) # front
-            self.tilt_side(floor, raised, t) # left
-            self.tilt(raised, mid, floor, t) # back
-            self.tilt_side(raised, floor, t) # right
-
-        self.squat(raised, t)
-
-    def dance_tilt_cw(self, raised = 60, mid = 40, floor = 20, repetitions = 3, t = 0.15):
+    def dance_tilt(self, raised = 60, mid = 40, floor = 20, repetitions = 3, t = 0.15):
 
         for r in xrange(repetitions):
             
@@ -114,14 +103,6 @@ class HexapodPro(Hexapod):
 
         self.squat(raised, t)
 
-    def dance_tilt(self, repetitions = 2, t = 0.15):
-
-        for r in xrange(repetitions):
-           self.dance_tilt_cw(repetitions = 1)
-           self.dance_tilt_ccw(repetitions = 1)
-
-        self.squat(60, t)
-        
     def rock_body(self,  offset = 45, floor = 50, repetitions = 7):
 
         for r in xrange(repetitions):

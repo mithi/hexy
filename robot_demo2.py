@@ -31,10 +31,7 @@ hexy.default()
 hexy.tilt_front_and_back()
 hexy.default()
 
-hexy.dance_tilt_ccw()
-hexy.default()
-
-hexy.dance_tilt_cw()
+hexy.dance_tilt()
 hexy.default()
 
 hexy.shut_down()
