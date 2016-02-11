@@ -1,11 +1,9 @@
-from robot import Hexapod
+from robot_pro import HexapodPro
 from time import sleep
 
+class DancingHexapod(HexapodPro):
 
-
-class DancingHexapod(Hexapod):
-
-    def prepare(self, offset = 45, back_knee = 0, middle_knee = 40, front_knee = 60, raised = -30, s = 0.2):
+    def prepare(self, offset = 45, back_knee = 0, middle_knee = 50, front_knee = 60, raised = -30, s = 0.2):
         """ brings the back legs even further to the back and the middle legs to the front
             and then brings his further to the front """ 
         
@@ -36,15 +34,15 @@ class DancingHexapod(Hexapod):
         
     def dip_body(self):
         
-        self.left_middle.move(knee_angle = 30)
-        self.right_middle.move(knee_angle = 30)
+        self.left_middle.move(knee_angle = 50)
+        self.right_middle.move(knee_angle = 50)
         self.left_back.move(knee_angle = -10)
         self.right_back.move(knee_angle = -10)
 
     def raise_body(self):
         
-        self.left_middle.move(knee_angle = 40)
-        self.right_middle.move(knee_angle = 40)
+        self.left_middle.move(knee_angle = 60)
+        self.right_middle.move(knee_angle = 60)
         self.left_back.move(knee_angle = 0)
         self.right_back.move(knee_angle = 0)
 
@@ -108,8 +106,6 @@ class DancingHexapod(Hexapod):
 hexy = DancingHexapod()
 
 hexy.boot_up()
-
-hexy.rock_body()
 hexy.rest()
 
 hexy.night_fever()

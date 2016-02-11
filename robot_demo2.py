@@ -1,10 +1,14 @@
-from robot import Hexapod
-from time import sleep
-
+from robot_pro import HexapodPro
 
 hexy =  Hexapod()
 
 hexy.boot_up()
+hexy.rest()
+
+hexy.rock_body()
+hexy.rest()
+
+hexy.dance_twist()
 hexy.rest()
 
 hexy.shake_head()
@@ -14,9 +18,6 @@ hexy.point(s = 0.75)
 hexy.rest()
 
 hexy.type_stuff()
-hexy.rest()
-
-hexy.twist_hip_slowly()
 hexy.rest()
 
 hexy.wave()

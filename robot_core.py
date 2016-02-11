@@ -35,14 +35,10 @@ def drive(ch, val):
 
 
 def constrain(val, min_val, max_val):
-
-    if val < min_val: return min_val
-    if val > max_val: return max_val
-    return val
+    return min(max_val, max(min_val, val))
 
 
 def remap(old_val, (old_min, old_max), (new_min, new_max)):
-
     new_diff = (new_max - new_min)*(old_val - old_min) / float((old_max - old_min))
     return int(round(new_diff)) + new_min 
 
@@ -55,8 +51,10 @@ class HexapodCore:
 
         self.left_front = Leg('left front', 'LFH', 'LFK', 'LFA')
         self.right_front = Leg('right front', 'RFH', 'RFK', 'RFA')
+
         self.left_middle = Leg('left middle', 'LMH', 'LMK', 'LMA')
         self.right_middle = Leg('right middle', 'RMH', 'RMK', 'RMA')
+        
         self.left_back = Leg('left back', 'LBH', 'LBK', 'LBA')
         self.right_back = Leg('right back', 'RBH', 'RBK', 'RBA')
 
@@ -78,10 +76,8 @@ class HexapodCore:
             self.ankles.append(leg.ankle)
 
     def off(self):
-
         for leg in self.legs:
-            for joint in leg.joints:
-                joint.off()
+            leg.off()
 
 
 class Leg:
@@ -109,6 +105,7 @@ class Leg:
 
         if knee_angle == None:
             knee_angle = self.knee.angle
+
         if hip_angle == None:
             hip_angle = self.hip.angle
 
@@ -118,8 +115,13 @@ class Leg:
 
         self.move(knee_angle = raised)
         sleep(s)
+
         self.move(knee_angle = floor, hip_angle = offset)
         sleep(s)
+
+    def off(self):
+        for joint in joints:
+            joint.off()
         
     def __repr__(self):
         return 'leg: ' + self.name
@@ -132,6 +134,7 @@ class Joint:
         self.joint_type, self.name =  joint_type, jkey
         self.channel, self.min_pulse, self.max_pulse = joint_properties[jkey]
         self.max, self.leeway = maxx, leeway
+
         self.off()
 
     def pose(self, angle = 0):
