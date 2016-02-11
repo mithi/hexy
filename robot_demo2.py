@@ -3,7 +3,7 @@ from time import sleep
 
 hexy =  HexapodPro()
 
-sleep(10)
+sleep(5)
 
 hexy.boot_up()
 

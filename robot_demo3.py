@@ -102,7 +102,7 @@ class DancingHexapod(HexapodPro):
 
 hexy = DancingHexapod()
 
-sleep(10)
+sleep(3)
 
 hexy.boot_up()
 hexy.default()
