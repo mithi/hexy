@@ -1,6 +1,9 @@
 from robot_pro import HexapodPro
+from time import sleep
 
 hexy =  HexapodPro()
+
+sleep(10)
 
 hexy.boot_up()
 
