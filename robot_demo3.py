@@ -32,19 +32,19 @@ class DancingHexapod(HexapodPro):
         self.right_front.hip.pose(45)
         hexy.neck.pose(0)
         
-    def dip_body(self):
+    def dip_body(self, mid = 60, back = -10):
         
-        self.left_middle.move(knee_angle = 60)
-        self.right_middle.move(knee_angle = 60)
-        self.left_back.move(knee_angle = -10)
-        self.right_back.move(knee_angle = -10)
+        self.left_middle.move(knee_angle = mid)
+        self.right_middle.move(knee_angle = mid)
+        self.left_back.move(knee_angle = -mid)
+        self.right_back.move(knee_angle = -mid)
 
-    def raise_body(self):
+    def raise_body(self, mid = 70, back = 0):
         
-        self.left_middle.move(knee_angle = 70)
-        self.right_middle.move(knee_angle = 70)
-        self.left_back.move(knee_angle = 0)
-        self.right_back.move(knee_angle = 0)
+        self.left_middle.move(knee_angle = mid)
+        self.right_middle.move(knee_angle = mid)
+        self.left_back.move(knee_angle = back)
+        self.right_back.move(knee_angle = back)
 
     def night_fever(self):
 
@@ -106,13 +106,13 @@ class DancingHexapod(HexapodPro):
 
         self.lean_back()
     
-        self.left_front.pose(hip_angle = 45, knee_angle = -30, ankle_angle = 0)
-        self.right_front.pose(hip_angle = -45, knee_angle = 30, ankle_angle = 0)
+        self.left_front.pose(hip_angle = -45, knee_angle = -30, ankle_angle = 0)
+        self.right_front.pose(hip_angle = 45, knee_angle = 30, ankle_angle = 0)
 
         for r in range(5):
-          self.dip_body()
+          self.dip_body(mid = 50, back = -10)
           sleep(0.3)
-          self.raise_body()
+          self.raise_body(mid = 70, back = 10)
           sleep(0.3)
 
         self.prepare()
