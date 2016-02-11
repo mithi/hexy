@@ -43,7 +43,7 @@ class HexapodPro(Hexapod):
                 self.twist_hip(angle, s)
 
         self.twist_hip()
-        self.squat(raised, s)
+        self.squat(60, s)
 
 
     def lean_back(self, offset = 45, back_knee = 0, middle_knee = 40, raised = -30, s = 0.2):
@@ -129,4 +129,3 @@ class HexapodPro(Hexapod):
             self.uniform_move(self.right_legs, -offset, floor, 0.2)
             self.uniform_move(self.left_legs, -offset, floor, 0)
             self.uniform_move(self.right_legs, offset, floor, 0.2)
-            
