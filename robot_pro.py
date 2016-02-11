@@ -120,7 +120,7 @@ class HexapodPro(Hexapod):
            self.dance_tilt_cw(repetitions = 1)
            self.dance_tilt_ccw(repetitions = 1)
 
-        self.squat(raised, s = 0.15)
+        self.squat(60, s = 0.15)
         
     def rock_body(self,  offset = 45, floor = 50, repetitions = 7):
 
