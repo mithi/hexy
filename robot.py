@@ -111,8 +111,8 @@ class Hexapod(HexapodCore):
     def tilt_side(self, left_angle = 50, right_angle = 0, s = 0.2):
         """ if left_angle > right_angle, left side is higher than right side """
         
-        self.uniform_move(legs = left_legs, knee_angle = left_angle)
-        self.uniform_move(legs = right_legs, knee_angle = right_angle)
+        self.uniform_move(legs = self.left_legs, knee_angle = left_angle)
+        self.uniform_move(legs = self.right_legs, knee_angle = right_angle)
         sleep(s)
 
     def tilt(self, front_angle = 50, middle_angle = 25, back_angle = 0, s = 0.2):
