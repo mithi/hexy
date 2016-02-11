@@ -16,7 +16,7 @@ hexy.default()
 hexy.shake_head()
 hexy.default()
 
-hexy.point(s = 0.75)
+hexy.point(t = 0.75)
 hexy.default()
 
 hexy.type_stuff()

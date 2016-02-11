@@ -3,21 +3,21 @@ from time import sleep
 
 class DancingHexapod(HexapodPro):
 
-    def prepare(self, offset = 45, back_knee = 0, middle_knee = 50, front_knee = 60, raised = -30, s = 0.2):
+    def prepare(self, offset = 45, back_knee = 0, middle_knee = 50, front_knee = 60, raised = -30, t = 0.2):
         """ brings the back legs even further to the back and the middle legs to the front
             and then brings his further to the front """ 
         
-        self.left_back.replant(raised, back_knee, offset, s)
-        self.right_back.replant(raised, back_knee, -offset, s)
-        self.left_middle.replant(raised, middle_knee, -offset, s)
-        self.right_middle.replant(raised, middle_knee, offset, s)
+        self.left_back.replant(raised, back_knee, offset, t)
+        self.right_back.replant(raised, back_knee, -offset, t)
+        self.left_middle.replant(raised, middle_knee, -offset, t)
+        self.right_middle.replant(raised, middle_knee, offset, t)
         
-        self.left_front.replant(raised, front_knee, -offset, s)
-        self.right_front.replant(raised, front_knee, offset, s)
+        self.left_front.replant(raised, front_knee, -offset, t)
+        self.right_front.replant(raised, front_knee, offset, t)
 
         self.neck.pose()
 
-        sleep(s)
+        sleep(t)
         
     def wave_right_arm_up(self):
     

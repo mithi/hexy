@@ -111,13 +111,13 @@ class Leg:
 
         self.pose(hip_angle, knee_angle, knee_angle - offset)
 
-    def replant(self, raised, floor, offset, s = 0.1):
+    def replant(self, raised, floor, offset, t = 0.1):
 
         self.move(raised)
-        sleep(s)
+        sleep(t)
 
         self.move(floor, offset)
-        sleep(s)
+        sleep(t)
 
     def off(self):
         for joint in self.joints:
