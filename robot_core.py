@@ -117,7 +117,7 @@ class Leg:
         sleep(s)
 
     def off(self):
-        for joint in joints:
+        for joint in self.joints:
             joint.off()
         
     def __repr__(self):
