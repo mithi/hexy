@@ -90,7 +90,7 @@ class HexapodPro(Hexapod):
             self.tilt(up, mid, down)
             self.tilt(down, mid, up)
 
-        self.squat(raised, s)
+        self.squat(up, s)
     
     def dance_tilt_ccw(self, raised = 60, mid = 25, floor = 0, repetitions = 3, s = 0.15):
 
