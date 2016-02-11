@@ -1,6 +1,5 @@
 from Adafruit_PWM_Servo_Driver import PWM
 from time import sleep
-import threading 
 
 """ joint_key convention:
     R - right, L - left
