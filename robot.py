@@ -52,6 +52,7 @@ class Hexapod(HexapodCore):
 
     def rest(self, knee_angle = 60, s = 0.3):
         
+        print "rest"
         self.squat(knee_angle, s)        
         self.off()
         sleep(s)
