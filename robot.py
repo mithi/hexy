@@ -51,7 +51,6 @@ class Hexapod(HexapodCore):
         self.pose_default()
 
     def rest(self, knee_angle = 60, s = 0.3):
-        
         self.squat(knee_angle, s)        
 
     def look(self, angle = 0, s = 0.05):
@@ -65,10 +64,11 @@ class Hexapod(HexapodCore):
 
         sleep(s)
         
-    def squat(self, knee_angle, s = 0):
-        
+    def squat(self, angle, s = 0):
+
+        print "squat"
         for leg in self.legs:
-            leg.move(knee_angle)
+            leg.move(knee_angle = angle)
 
         sleep(s)
 
