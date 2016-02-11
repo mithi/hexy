@@ -41,8 +41,8 @@ class DancingHexapod(HexapodPro):
 
     def raise_body(self):
         
-        self.left_middle.move(knee_angle = 60)
-        self.right_middle.move(knee_angle = 60)
+        self.left_middle.move(knee_angle = 70)
+        self.right_middle.move(knee_angle = 70)
         self.left_back.move(knee_angle = 0)
         self.right_back.move(knee_angle = 0)
 

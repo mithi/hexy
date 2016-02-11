@@ -26,10 +26,8 @@ driver2.setPWMFreq(60)
 
 
 def drive(ch, val):
-
     driver = driver1 if ch < 16 else driver2
     ch = ch if ch < 16 else ch - 16    
-
     driver.setPWM(ch, 0, val)
 
 
@@ -100,7 +98,7 @@ class Leg:
 
     def move(self, knee_angle = None, hip_angle = None, offset = 100):
         """ knee_angle < 0 means thigh is raised, ankle's angle will be set to the specified 
-            knee angle minus the offset which is a value usually best between 80 and 110 """
+            knee angle minus the offset. offset is best between 80 and 110 """
 
         if knee_angle == None:
             knee_angle = self.knee.angle
