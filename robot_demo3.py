@@ -96,7 +96,7 @@ class DancingHexapod(HexapodPro):
         
         self.prepare()
 
-        for r in xrange(4):
+        for r in xrange(3):
             self.thriller_routine1()
             self.thriller_routine2()
 
