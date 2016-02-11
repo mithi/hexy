@@ -32,7 +32,7 @@ class HexapodPro(Hexapod):
 
     def dance_twist(self, maxx = 45, step = 5, repetitions = 3, s = 0.01):
 
-        self.squat(raised, s)
+        self.squat(60, s)
 
         for r in xrange(repetitions):
             
