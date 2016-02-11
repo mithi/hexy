@@ -102,10 +102,28 @@ class DancingHexapod(HexapodPro):
             self.thriller_routine2()
             self.thriller_routine2()
 
-            
+    def gangnam(self):
+
+        self.lean_back()
+    
+        self.left_front.pose(hip_angle = 45, knee_angle = -30, ankle_angle = 0)
+        self.right_front.pose(hip_angle = -45, knee_angle = 30, ankle_angle = 0)
+
+        for r in range(5):
+          self.dip_body()
+          sleep(0.3)
+          self.raise_body()
+          sleep(0.3)
+
+        self.prepare()
+
 hexy = DancingHexapod()
 
+
 hexy.boot_up()
+hexy.default()
+
+hexy.gangnam()
 hexy.default()
 
 hexy.night_fever()
