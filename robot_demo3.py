@@ -32,12 +32,12 @@ class DancingHexapod(HexapodPro):
         self.right_front.hip.pose(45)
         hexy.neck.pose(0)
         
-    def dip_body(self, mid = 60, back = 10):
+    def dip_body(self, mid = 50, back = 0):
         
         self.left_middle.move(knee_angle = mid)
         self.right_middle.move(knee_angle = mid)
-        self.left_back.move(knee_angle = -mid)
-        self.right_back.move(knee_angle = -mid)
+        self.left_back.move(knee_angle = -back)
+        self.right_back.move(knee_angle = -back)
 
     def raise_body(self, mid = 70, back = 20):
         
@@ -98,10 +98,7 @@ class DancingHexapod(HexapodPro):
 
         for r in xrange(4):
             self.thriller_routine1()
-            self.thriller_routine1()
             self.thriller_routine2()
-            self.thriller_routine2()
-
 
 hexy = DancingHexapod()
 
