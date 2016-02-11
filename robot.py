@@ -84,8 +84,6 @@ class Hexapod(HexapodCore):
             self.stride(self.tripod1, self.tripod2, swings, raised, floor, s)
             self.stride(self.tripod2, self.tripod1, reverse_swings, raised, floor, s)
 
-        self.pose_default()
-
     def rotate(self, offset = 40, raised = -30, floor = 50, repetitions = 5, s = 0.2):
         """ if offset > 0, hexy rotates left, else right """
        
@@ -103,8 +101,6 @@ class Hexapod(HexapodCore):
             
             #lower tripod1
             self.uniform_move(self.tripod1, 0, floor, s)
-
-        self.pose_default()
 
     def pose_default(self, offset = 45, floor = 50, raised = -30,  s = 0.2):
         """ default pose of the hexapod, offset > 0 brings the front and back legs to the side """ 
