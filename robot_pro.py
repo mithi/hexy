@@ -76,7 +76,7 @@ class HexapodPro(Hexapod):
         
         sleep(s)
 
-    def tilt_left_and_right(self, raised = 60, floor = 0, repetitions = 5, s = 0.15):
+    def tilt_left_and_right(self, raised = 60, floor = 20, repetitions = 5, s = 0.15):
         
         for r in xrange(repetitions):
             self.tilt_side(left_angle = floor, right_angle = raised)
@@ -84,7 +84,7 @@ class HexapodPro(Hexapod):
 
         self.squat(raised, s)
 
-    def tilt_front_and_back(self, up = 60, mid = 25, down = 0, repetitions = 5, s = 0.15):
+    def tilt_front_and_back(self, up = 60, mid = 40, down = 20, repetitions = 5, s = 0.15):
         
         for r in xrange(repetitions):
             self.tilt(up, mid, down)
@@ -92,7 +92,7 @@ class HexapodPro(Hexapod):
 
         self.squat(up, s)
     
-    def dance_tilt_ccw(self, raised = 60, mid = 25, floor = 0, repetitions = 3, s = 0.15):
+    def dance_tilt_ccw(self, raised = 60, mid = 40, floor = 20, repetitions = 3, s = 0.15):
 
         for r in xrange(repetitions):
             
@@ -103,7 +103,7 @@ class HexapodPro(Hexapod):
 
         self.squat(raised, s)
 
-    def dance_tilt_cw(self, raised = 50, mid = 25, floor = 0, repetitions = 3, s = 0.15):
+    def dance_tilt_cw(self, raised = 60, mid = 40, floor = 20, repetitions = 3, s = 0.15):
 
         for r in xrange(repetitions):
             
