@@ -106,13 +106,13 @@ class DancingHexapod(HexapodPro):
 hexy = DancingHexapod()
 
 hexy.boot_up()
-hexy.rest()
+hexy.default()
 
 hexy.night_fever()
-hexy.rest()
+hexy.default()
 
 hexy.thriller()
-hexy.rest()
+hexy.default()
 
 hexy.shut_down()
     
