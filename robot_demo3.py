@@ -34,8 +34,8 @@ class DancingHexapod(HexapodPro):
         
     def dip_body(self):
         
-        self.left_middle.move(knee_angle = 50)
-        self.right_middle.move(knee_angle = 50)
+        self.left_middle.move(knee_angle = 60)
+        self.right_middle.move(knee_angle = 60)
         self.left_back.move(knee_angle = -10)
         self.right_back.move(knee_angle = -10)
 

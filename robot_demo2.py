@@ -1,6 +1,6 @@
 from robot_pro import HexapodPro
 
-hexy =  Hexapod()
+hexy =  HexapodPro()
 
 hexy.boot_up()
 hexy.rest()
