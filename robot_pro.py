@@ -11,7 +11,7 @@ class HexapodPro(Hexapod):
         
         self.look()
 
-    def point(self, t = 0.15):
+    def point(self, t = 0.75):
         
         self.left_front.hip.pose(-45)
         self.left_front.knee.pose(-50)
