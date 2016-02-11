@@ -32,14 +32,14 @@ class DancingHexapod(HexapodPro):
         self.right_front.hip.pose(45)
         hexy.neck.pose(0)
         
-    def dip_body(self, mid = 60, back = -10):
+    def dip_body(self, mid = 60, back = 10):
         
         self.left_middle.move(knee_angle = mid)
         self.right_middle.move(knee_angle = mid)
         self.left_back.move(knee_angle = -mid)
         self.right_back.move(knee_angle = -mid)
 
-    def raise_body(self, mid = 70, back = 0):
+    def raise_body(self, mid = 70, back = 20):
         
         self.left_middle.move(knee_angle = mid)
         self.right_middle.move(knee_angle = mid)
@@ -102,28 +102,10 @@ class DancingHexapod(HexapodPro):
             self.thriller_routine2()
             self.thriller_routine2()
 
-    def gangnam(self):
-
-        self.lean_back()
-    
-        self.left_front.pose(hip_angle = -45, knee_angle = -30, ankle_angle = 0)
-        self.right_front.pose(hip_angle = 45, knee_angle = 30, ankle_angle = 0)
-
-        for r in range(5):
-          self.dip_body(mid = 50, back = -10)
-          sleep(0.3)
-          self.raise_body(mid = 70, back = 10)
-          sleep(0.3)
-
-        self.prepare()
 
 hexy = DancingHexapod()
 
-
 hexy.boot_up()
-hexy.default()
-
-hexy.gangnam()
 hexy.default()
 
 hexy.night_fever()

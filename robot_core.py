@@ -73,8 +73,11 @@ class HexapodCore:
             self.ankles.append(leg.ankle)
 
     def off(self):
+
+        self.neck.off()
+        
         for leg in self.legs:
-            leg.off()
+            leg.off() 
 
 
 class Leg:
