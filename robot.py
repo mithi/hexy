@@ -106,13 +106,15 @@ class Hexapod(HexapodCore):
 
     def pose_default(self, offset = 45, floor = 50, raised = -30,  s = 0.2):
         """ default pose of the hexapod, offset > 0 brings the front and back legs to the side """ 
-          
+        
+        print "pose_default"
+        
         swings = [offset, 0, -offset]
         self.look()
         self.simultaneous_move(self.tripod1, swings, raised, s) 
         self.simultaneous_move(self.tripod1, swings, floor, s)
-        self.simultaneous_move(self.tripod2, swings, raised, s)
-        self.simultaneous_move(self.tripod2, swings, floor, s)
+        self.simultaneous_move(self.tripod2, swings[::-1], raised, s)
+        self.simultaneous_move(self.tripod2, swings[::-1], floor, s)
 
     def uniform_move(self, legs, hip_angle = None, knee_angle = None, s = 0):
         """ moves all legs in 'legs' using parameters hip_angle, knee_angle """
