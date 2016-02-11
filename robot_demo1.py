@@ -2,7 +2,9 @@ from robot import Hexapod
 from time import sleep
 
 hexy =  Hexapod()
-    
+
+sleep(10)
+
 print("lie flat, curl up, then get up")
 hexy.boot_up()
 
