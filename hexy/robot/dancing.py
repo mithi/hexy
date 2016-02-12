@@ -24,13 +24,13 @@ class DancingHexapod(HexapodPro):
         self.right_front.knee.pose(-60)
         self.right_front.ankle.pose(0)
         self.right_front.hip.pose(-45)
-        hexy.neck.pose(-40)
+        self.neck.pose(-40)
 
     def wave_right_arm_down(self):
         self.right_front.knee.pose(50)
         self.right_front.ankle.pose(-50)
         self.right_front.hip.pose(45)
-        hexy.neck.pose(0)
+        self.neck.pose(0)
         
     def dip_body(self, mid = 50, back = 0):
         
