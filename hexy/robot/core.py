@@ -103,11 +103,8 @@ class Leg:
         """ knee_angle < 0 means thigh is raised, ankle's angle will be set to the specified 
             knee angle minus the offset. offset best between 80 and 110 """
 
-        if knee_angle == None:
-            knee_angle = self.knee.angle
-
-        if hip_angle == None:
-            hip_angle = self.hip.angle
+        if knee_angle == None: knee_angle = self.knee.angle
+        if hip_angle == None: hip_angle = self.hip.angle
 
         self.pose(hip_angle, knee_angle, knee_angle - offset)
 
