@@ -18,11 +18,9 @@ $ python -m hexy.demo.demo2
 $ python -m hexy.demo.demo3
 ```
 
-sample usage: 
+sample usage when running python interpreter from anywhere in your system... 
 
 ```
-$ cd /home/pi/hexy
-$ python 
 >>> from hexy.robot.hexapod import Hexapod
 >>> hexy = Hexapod()
 >>> hexy.boot_up()
@@ -43,6 +41,7 @@ also try this...
 >>> hexy.shake_head()
 >>> hexy.wave()
 >>> hexy.point()
+>>> hexy.type_stuff()
 >>> hexy.lie_down()
 >>> hexy.off()
 ```
@@ -54,10 +53,9 @@ and this :)
 >>> hexy = DancingHexapod()
 >>> hexy.boot_up()
 >>> hexy.night_fever()
->>> hexy.type_stuff()
 >>> hexy.default()
 >>> hexy.dance_tilt()
->>> hexy.default()
+>>> hexy.squat(angle = 60)
 >>> hexy.thriller()
 >>> hexy.lie_down()
 >>> hexy.curl_up(die = True)
