@@ -7,5 +7,5 @@ setup(name = 'hexy',
       author = 'Mithi',
       author_email = 'mithi.sevilla@gmail.com',
       license = 'MIT',
-      packages = ['hexy'],
+      packages = ['hexy', 'hexy.robot', 'hexy.demo', 'hexy.comm'],
       zip_safe = False)
