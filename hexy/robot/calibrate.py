@@ -9,5 +9,5 @@ def calibrate_joint(joint, t, mn, mx, z):
             sleep(t)
             
 hexy = HexapodCore()
-calibrate_joint( hexy.right_back.knee, t = 2, mn = -45, mx = 45, z =0)
+calibrate_joint( hexy.right_back.knee, t = 2, mn = -45, mx = 45, z = 0)
 #hexy.off()
