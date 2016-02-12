@@ -1,6 +1,10 @@
 # raspberry-pi-hexy
 arcbotics hexy hexapod robot frame with raspberry pi zero and adafruit 16 channel i2c servo driver
 check http://hexyrobot.wordpress.com for details
+
+```
+HexapodCore > Hexapod > HexapodPro > DancingHexapod
+```
  
 the easiest way to get this up and running, on your raspberry pi zero is to do the following on the terminal via ssh.
 
