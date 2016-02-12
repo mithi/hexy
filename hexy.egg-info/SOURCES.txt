@@ -1,0 +1,7 @@
+setup.py
+hexy/__init__.py
+hexy.egg-info/PKG-INFO
+hexy.egg-info/SOURCES.txt
+hexy.egg-info/dependency_links.txt
+hexy.egg-info/not-zip-safe
+hexy.egg-info/top_level.txt
