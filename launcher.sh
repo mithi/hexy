@@ -2,10 +2,9 @@
 #launcher.sh
 
 cd /
-cd home/pi/hexy/hexy/demo
+cd home/pi/hexy
 
-sudo python demo1.py
-sudo python demo2.py
-sudo python demo3.py
-
+sudo python -m hexy.demo.demo1
+sudo python -m hexy.demo.demo2
+sudo python -m hexy.demo.demo3
 cd /
