@@ -29,19 +29,16 @@ $ python
 >>> hexy.shut_down()
 ```
 
-also try the following...
+also try this...
 
 ```
 >>> from hexy.robot.pro import HexapodPro
 >>> hexy = HexapodPro()
 >>> hexy.lie_flat()
 >>> hexy.get_up()
->>> hexy.default()
 >>> hexy.shake_head()
 >>> hexy.wave()
 >>> hexy.point()
->>> hexy.dance_tilt()
->>> hexy.default()
 >>> hexy.lie_down()
 >>> hexy.off()
 ```
@@ -52,8 +49,12 @@ and this :)
 >>> from hexy.robot.dancing import DancingHexapod
 >>> hexy = DancingHexapod()
 >>> hexy.boot_up()
->>> hexy.thriller()
 >>> hexy.night_fever()
+>>> hexy.type_stuff()
+>>> hexy.default()
+>>> hexy.dance_tilt()
+>>> hexy.default()
+>>> hexy.thriller()
 >>> hexy.lie_down()
 >>> hexy.curl_up(die = True)
 ```
