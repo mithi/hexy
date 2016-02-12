@@ -2,10 +2,10 @@
 #launcher.sh
 
 cd /
-cd home/pi/hexy
+cd home/pi/hexy/hexy/demo
 
-sudo python robot_demo1.py
-sudo python robot_demo2.py
-sudo python robot_demo3.py
+sudo python demo1.py
+sudo python demo2.py
+sudo python demo3.py
 
 cd /

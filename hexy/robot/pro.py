@@ -1,4 +1,4 @@
-from robot import Hexapod
+from hexapod import Hexapod
 from time import sleep
 
 class HexapodPro(Hexapod):

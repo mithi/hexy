@@ -1,4 +1,4 @@
-from Adafruit_PWM_Servo_Driver import PWM
+from ..comm.pwm import PWM
 from time import sleep
 
 """ joint_key convention:

@@ -1,4 +1,4 @@
-from robot_pro import HexapodPro
+from ..robot.pro import HexapodPro
 from time import sleep
 
 hexy =  HexapodPro()

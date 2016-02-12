@@ -1,4 +1,4 @@
-from robot_pro import HexapodPro
+from pro import HexapodPro
 from time import sleep
 
 class DancingHexapod(HexapodPro):
@@ -99,19 +99,3 @@ class DancingHexapod(HexapodPro):
         for r in xrange(3):
             self.thriller_routine1()
             self.thriller_routine2()
-
-hexy = DancingHexapod()
-
-sleep(3)
-
-hexy.boot_up()
-hexy.default()
-
-hexy.night_fever()
-hexy.default()
-
-hexy.thriller()
-hexy.default()
-
-hexy.shut_down()
-    
