@@ -3,8 +3,6 @@ from time import sleep
 
 hexy =  Hexapod()
 
-sleep(5)
-
 print("lie flat, curl up, then get up")
 hexy.boot_up()
 
