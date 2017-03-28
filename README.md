@@ -7,7 +7,7 @@ Arcbotics hexapod robot frame with Raspberry Pi Zero and Adafruit 16 channel I2C
 HexapodCore > Hexapod > HexapodPro > DancingHexapod
 ```
  
-the easiest way to get this up and running, on your raspberry pi zero is to do the following on the terminal via ssh.
+The easiest way to get this up and running, on your raspberry pi zero is to do the following on the terminal via ssh.
 
 ```
 $ ssh YOUR.RPI.IP.ADDR -l pi 
@@ -19,7 +19,7 @@ $ python -m hexy.demo.demo2
 $ python -m hexy.demo.demo3
 ```
 
-sample usage when running python interpreter from anywhere in your system... 
+Sample usage when running python interpreter from anywhere in your system... 
 
 ```
 >>> from hexy.robot.hexapod import Hexapod
@@ -32,7 +32,7 @@ sample usage when running python interpreter from anywhere in your system...
 >>> hexy.shut_down()
 ```
 
-also try this...
+Also try this...
 
 ```
 >>> from hexy.robot.pro import HexapodPro
@@ -47,7 +47,7 @@ also try this...
 >>> hexy.off()
 ```
 
-and this :)
+And this :)
 
 ```
 >>> from hexy.robot.dancing import DancingHexapod
