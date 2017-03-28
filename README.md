@@ -1,6 +1,7 @@
-# raspberry-pi-hexy
-arcbotics hexy hexapod robot frame with raspberry pi zero and adafruit 16 channel i2c servo driver
-check http://hexyrobot.wordpress.com for details
+
+Arcbotics hexapod robot frame with Raspberry Pi Zero and Adafruit 16 channel I2C servo driver
+[Hexy Documentation](http://hexyrobot.wordpress.com)
+[Hexy Transcript](https://medium.com/@mithi/a-raspberry-pi-hexy-transcript-62533c69a566)
 
 ```
 HexapodCore > Hexapod > HexapodPro > DancingHexapod
