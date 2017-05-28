@@ -1,12 +1,12 @@
 
 # TABLE OF CONTENTS
-- important links
-- stuff to buy and assemble
-- - electronic hardware stuff
-- - frame 
-- - connect stuff and calibrate servos
-- configuration and calibration 
-- sample usage
+- Links
+- Stuff to Buy and Assemble
+- - Electronic Hardware Stuff
+- - Frame 
+- - Connect Stuff and Calibrate Servos
+- Configuration and Calibration 
+- Sample Usage
 
 #  LINKS
 - [Hexy Documentation](http://hexyrobot.wordpress.com)
@@ -15,35 +15,36 @@
 # STUFF TO BUY AND ASSEMBLE
 
 ## Electronic Hardware stuff 
-I bought a bunch of stuff, most importantly here's what I used
+I bought a bunch of stuff, here are the most importants stuff:
 - [Two Adafruit 16-channel PWM servo drivers](https://learn.adafruit.com/16-channel-pwm-servo-driver)
 - [A Raspberry Pi Zero](https://www.adafruit.com/product/3400)
 - [Nineteen DFRobot 9g, 1.8kg torque metal gear servos](https://www.dfrobot.com/product-1338.html)
 - [5V, 10A power supply](https://www.adafruit.com/product/658)
-- [All stuff outlined here](https://hexyrobot.wordpress.com/2016/02/08/hexy-modifications/) 
+- [All other stuff outlined here](https://hexyrobot.wordpress.com/2016/02/08/hexy-modifications/) 
 
 ## Frame
 The screws and nuts are regular (3M ones you can buy from a local hardware store. You can lazer cut or 3D print 
-Arcbotic's Hexapod frame as they have open-sources the files in DXF and STL format. I used a 5mm acrylic sheet for it. 
-- [Arcbot](https://github.com/arcbotics/hexy)
+Arcbotic's Hexapod frame as they have open-sources the files in DXF and STL format. I used a 5mm acrylic sheet. 
+- [Arcbotics Frame](https://github.com/arcbotics/hexy)
 - [Arcbotics Frame Build Instructions](http://arcbotics.com/products/hexy/start/)
 
 ## Connect Stuff and Calibrate Servos
 Adafruit has good tutorials for how to wire the drivers and all with the Arduino and Raspberry Pi. 
-- https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all
-- https://learn.adafruit.com/adafruit-16-channel-pwm-slash-servo-shield?view=all
-- The large Raspberry Pi 2B and 3B has the same 40-pin configuration as the Raspberry Pi Zero, you just follow how to wire the I2C pins there. These tutorials are also good starting point to calibrate the minimum and maximum pulses of each of your servo which you'd have to do. 
+- [Servo Driver with Arduino](https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all)
+- [Servo Driver Hat with Raspberry Pi](https://learn.adafruit.com/adafruit-16-channel-pwm-slash-servo-shield?view=all)
+- The large Raspberry Pi 2B and 3B has the same 40-pin configuration as the Raspberry Pi Zero, you just follow how to wire the I2C pins there. 
+- These tutorials are also good starting point to calibrate the minimum and maximum pulses of each of your servo which you'd have to do. 
 
-# IMPORTANTE CONFIGURATION AND CALIBRATION
+# IMPORTANT CONFIGURATION AND CALIBRATION
 
 @robottwo has implemented a nice gui and config file which I haven't merged yet (or let alone tested), 
 you might be interested cloning that instead: 
-## [ROBOTTWO'S NICE FORK](https://github.com/robottwo/hexy/tree/config)
+# [ROBOTTWO'S NICE FORK](https://github.com/robottwo/hexy/tree/config)
 
 You should take a look at base file here as it is implemented in a pretty straightforward manner:
-## [BASE FILE - CORE.PY](https://github.com/mithi/hexy/blob/master/hexy/robot/core.py)
+# [BASE FILE - CORE.PY](https://github.com/mithi/hexy/blob/master/hexy/robot/core.py)
 
-You may need to edit `lines 4 to 22` of thisf file (and a bunch of other lines) depending on the configuration of your Hexapod and if you are using a different frame or if using a different I2C addresses. 
+You may need to edit `lines 4 to 22` of this file (and a bunch of other lines) depending on the configuration of your Hexapod and if you are using a different frame or if you are using different I2C addresses.  
 
 ```
 """ joint_key convention:
@@ -70,7 +71,7 @@ driver2 = PWM(0x41)
 Or you may need to edit many of the lines in this file. For example this is what @patrickpoirier51 submitted as an issue: 
 - https://github.com/mithi/hexy/issues/3
 
-> I do have a different type of hexapod and the servo configuration makes the left and right side asymmetric, so +10 deg on left side makes -10 deg on right side. 
+> I do have a different type of hexapod and the servo configuration makes the left and right side asymmetric, so +10 deg on left side makes -10 deg on right side. - @patrickpoirier51
 
 Basically to solve his issue, he added a `direction` or a symmetry parameter at `joint_properties` IE
 ```
@@ -101,7 +102,7 @@ def pose:
 
 Also equally important is the range of motion of each `Joint` which I've defined in line `87` of the `Leg` class
 The ankle has a range of motion from `-90 to 90` while the hip and knee's range is `-45, 45` and `-50, 50` respectively. 
-I have the knee a leeway of 10 degrees. Change this as you see fit.
+I have a  knee leeway of 10 degrees. Change these as you see fit.
 ```
 max_hip, max_knee, knee_leeway = 45, 50, 10
 ```
