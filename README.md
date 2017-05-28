@@ -1,8 +1,113 @@
 
-Arcbotics hexapod robot frame with Raspberry Pi Zero and Adafruit 16 channel I2C servo driver
+# TABLE OF CONTENTS
+- important links
+- stuff to buy and assemble
+- - electronic hardware stuff
+- - frame 
+- - connect stuff and calibrate servos
+- configuration and calibration 
+- sample usage
+
+#  LINKS
 - [Hexy Documentation](http://hexyrobot.wordpress.com)
 - [Hexy Transcript](https://medium.com/@mithi/a-raspberry-pi-hexy-transcript-62533c69a566)
 
+# STUFF TO BUY AND ASSEMBLE
+
+## Electronic Hardware stuff 
+I bought a bunch of stuff, most importantly here's what I used
+- [Two Adafruit 16-channel PWM servo drivers](https://learn.adafruit.com/16-channel-pwm-servo-driver)
+- [A Raspberry Pi Zero](https://www.adafruit.com/product/3400)
+- [Nineteen DFRobot 9g, 1.8kg torque metal gear servos](https://www.dfrobot.com/product-1338.html)
+- [5V, 10A power supply](https://www.adafruit.com/product/658)
+- [All stuff outlined here](https://hexyrobot.wordpress.com/2016/02/08/hexy-modifications/) 
+
+## Frame
+The screws and nuts are regular (3M ones you can buy from a local hardware store. You can lazer cut or 3D print 
+Arcbotic's Hexapod frame as they have open-sources the files in DXF and STL format. I used a 5mm acrylic sheet for it. 
+- [Arcbot](https://github.com/arcbotics/hexy)
+- [Arcbotics Frame Build Instructions](http://arcbotics.com/products/hexy/start/)
+
+## Connect Stuff and Calibrate Servos
+Adafruit has good tutorials for how to wire the drivers and all with the Arduino and Raspberry Pi. 
+- https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all
+- https://learn.adafruit.com/adafruit-16-channel-pwm-slash-servo-shield?view=all
+- The large Raspberry Pi 2B and 3B has the same 40-pin configuration as the Raspberry Pi Zero, you just follow how to wire the I2C pins there. These tutorials are also good starting point to calibrate the minimum and maximum pulses of each of your servo which you'd have to do. 
+
+# IMPORTANTE CONFIGURATION AND CALIBRATION
+
+@robottwo has implemented a nice gui and config file which I haven't merged yet (or let alone tested), 
+you might be interested cloning that instead: 
+## [ROBOTTWO'S NICE FORK](https://github.com/robottwo/hexy/tree/config)
+
+You should take a look at base file here as it is implemented in a pretty straightforward manner:
+## [BASE FILE - CORE.PY](https://github.com/mithi/hexy/blob/master/hexy/robot/core.py)
+
+You may need to edit `lines 4 to 22` of thisf file (and a bunch of other lines) depending on the configuration of your Hexapod and if you are using a different frame or if using a different I2C addresses. 
+
+```
+""" joint_key convention:
+    R - right, L - left
+    F - front, M - middle, B - back
+    H - hip, K - knee, A - Ankle
+    key : (channel, minimum_pulse_length, maximum_pulse_length) """
+
+joint_properties = {
+
+    'LFH': (0, 248, 398), 'LFK': (1, 188, 476), 'LFA': (2, 131, 600),
+    'RFH': (3, 275, 425), 'RFK': (4, 227, 507), 'RFA': (5, 160, 625),
+    'LMH': (6, 312, 457), 'LMK': (7, 251, 531), 'LMA': (8, 138, 598),
+    'RMH': (9, 240, 390), 'RMK': (10, 230, 514), 'RMA': (11, 150, 620),
+    'LBH': (12, 315, 465), 'LBK': (13, 166, 466), 'LBA': (14, 140, 620),
+    'RBH': (15, 320, 480), 'RBK': (16, 209, 499), 'RBA': (17, 150, 676),
+    'N': (18, 150, 650)
+}
+
+driver1 = PWM(0x40)
+driver2 = PWM(0x41)
+```
+
+Or you may need to edit many of the lines in this file. For example this is what @patrickpoirier51 submitted as an issue: 
+- https://github.com/mithi/hexy/issues/3
+
+> I do have a different type of hexapod and the servo configuration makes the left and right side asymmetric, so +10 deg on left side makes -10 deg on right side. 
+
+Basically to solve his issue, he added a `direction` or a symmetry parameter at `joint_properties` IE
+```
+joint_properties = {
+
+    'LFH': (0, 330, 480, -1), 'LFK': (1, 200, 515, -1), 'LFA': (2, 130, 610, 1),
+    'RFH': (3, 380, 530, 1), 'RFK': (4, 300, 615, 1), 'RFA': (5, 130, 610, -1),
+    'LMH': (6, 320, 470, -1), 'LMK': (7, 251, 531, -1), 'LMA': (8, 130, 610, 1),
+    'RMH': (9, 380, 530, 1), 'RMK': (10, 290, 605, 1), 'RMA': (11, 150, 630, -1),
+    'LBH': (12, 350, 500, -1), 'LBK': (13, 200, 515, -1), 'LBA': (14, 180, 660, 1),
+    'RBH': (15, 350, 500, 1), 'RBK': (16, 300, 615, 1), 'RBA': (17, 130, 610, -1),
+    'N': (18, 150, 650, 1)
+    
+```
+And consequently updated the initialization of `Joint` in line `132`
+```
+    self.channel, self.min_pulse, self.max_pulse, self.direction = joint_properties[jkey]
+```
+
+As well as the `pose()` method in `Joint` in line `140`
+
+```
+def pose:
+    ...
+    pulse = remap((angle * self.direction), (-self.max, self.max), (self.min_pulse, self.max_pulse))
+    ...
+```
+
+Also equally important is the range of motion of each `Joint` which I've defined in line `87` of the `Leg` class
+The ankle has a range of motion from `-90 to 90` while the hip and knee's range is `-45, 45` and `-50, 50` respectively. 
+I have the knee a leeway of 10 degrees. Change this as you see fit.
+```
+max_hip, max_knee, knee_leeway = 45, 50, 10
+```
+
+
+# SAMPLE USAGE
 ```
 HexapodCore > Hexapod > HexapodPro > DancingHexapod
 ```
