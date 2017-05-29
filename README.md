@@ -15,7 +15,7 @@
 # STUFF TO BUY AND ASSEMBLE
 
 ## Electronic Hardware stuff 
-I bought a bunch of stuff, here are the most importants stuff:
+I bought a bunch of stuff, here are the most important stuff:
 - [Two Adafruit 16-channel PWM servo drivers](https://learn.adafruit.com/16-channel-pwm-servo-driver)
 - [A Raspberry Pi Zero](https://www.adafruit.com/product/3400)
 - [Nineteen DFRobot 9g, 1.8kg torque metal gear servos](https://www.dfrobot.com/product-1338.html)
@@ -100,7 +100,7 @@ def pose:
     ...
 ```
 
-Also equally important is the range of motion of each `Joint` which I've defined in line `87` of the `Leg` class
+Also equally important is the range of motion of each `Joint` which I've defined in line `87` of the `Leg` class.
 The ankle has a range of motion from `-90 to 90` while the hip and knee's range is `-45, 45` and `-50, 50` respectively. 
 I have a  knee leeway of 10 degrees. Change these as you see fit.
 ```
