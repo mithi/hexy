@@ -19,12 +19,12 @@
 I bought a bunch of stuff, here are the most important stuff:
 - [Two Adafruit 16-channel PWM servo drivers](https://learn.adafruit.com/16-channel-pwm-servo-driver)
 - [A Raspberry Pi Zero](https://www.adafruit.com/product/3400)
-- [Nineteen DFRobot 9g, 1.8kg torque metal gear servos](https://www.dfrobot.com/product-1338.html)
+- [Nineteen DFRobot 9g metal gear servos (1.8kg torque)](https://www.dfrobot.com/product-1338.html)
 - [5V, 10A power supply](https://www.adafruit.com/product/658)
 - [All other stuff outlined here](https://hexyrobot.wordpress.com/2016/02/08/hexy-modifications/) 
 
 ## Frame
-The screws and nuts are regular (3M ones you can buy from a local hardware store. You can lazer cut or 3D print 
+The screws and nuts are the 3M ones you can buy from your local hardware store. You can lazer cut or 3D print 
 Arcbotic's Hexapod frame as they have open-sources the files in DXF and STL format. I used a 5mm acrylic sheet. 
 - [Arcbotics Frame](https://github.com/arcbotics/hexy)
 - [Arcbotics Frame Build Instructions](http://arcbotics.com/products/hexy/start/)
