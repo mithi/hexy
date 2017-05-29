@@ -10,8 +10,8 @@
 - Sample Usage
 
 #  LINKS
-# [Hexy Documentation](http://hexyrobot.wordpress.com)
-# [Hexy Transcript](https://medium.com/@mithi/a-raspberry-pi-hexy-transcript-62533c69a566)
+- [Hexy Documentation](http://hexyrobot.wordpress.com)
+- [Hexy Transcript](https://medium.com/@mithi/a-raspberry-pi-hexy-transcript-62533c69a566)
 
 # STUFF TO BUY AND ASSEMBLE
 
@@ -41,14 +41,14 @@ Adafruit has good tutorials for how to wire the drivers and all with the Arduino
 @robottwo has implemented a nice gui and config file which I haven't merged (or let alone tested), 
 you might be interested cloning that instead: 
 
-# [ROBOTTWO'S FORK](https://github.com/robottwo/hexy/tree/config)
->> You may have your servo controllers on different addresses, or your servos plugged into different ports. You will also have to calibrate the min and max range of each of your servos, since these settings vary from servo to servo.
+- [ROBOTTWO'S FORK](https://github.com/robottwo/hexy/tree/config)
+> You may have your servo controllers on different addresses, or your servos plugged into different ports. You will also have to calibrate the min and max range of each of your servos, since these settings vary from servo to servo.
 These settings are all stored in the hexy.cfg file. To help with this task, there is a GUI program scripts/detect_controllers.py. - ROBOTTWO
 
-# IMPORTANT CONFIGURATION AND CALIBRATION
+# CONFIGURATION AND CALIBRATION
 
-You should take a look at base file here as it is implemented in a pretty straightforward manner:
-# [BASE FILE - CORE.PY](https://github.com/mithi/hexy/blob/master/hexy/robot/core.py)
+You should take a look at the base file here as it is implemented in a pretty straightforward manner:
+- [BASE FILE - CORE.PY](https://github.com/mithi/hexy/blob/master/hexy/robot/core.py)
 
 You may need to edit `lines 4 to 22` of this file (and a bunch of other lines) depending on the configuration of your Hexapod and if you are using a different frame or if you are using different I2C addresses.  
 
