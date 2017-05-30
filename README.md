@@ -203,29 +203,28 @@ hexy.right_front.pose(hip_angle = 0, knee_angle = 0, ankle_angle = 0)
 hexy.right_front.off() # prevents servo overloading
 ```
 
-There are also built-in lists of legs which you can iterate over IE from lines `58-66` of 
-[core.py](https://github.com/mithi/hexy/blob/master/hexy/robot/core.py)
+There are also built-in lists of legs which you can iterate over:
 
 ```
-self.legs = [self.left_front, self.right_front,
-             self.left_middle, self.right_middle,
-             self.left_back, self.right_back]
-
-self.right_legs = [self.right_front, self.right_middle, self.right_back]
-self.left_legs = [self.left_front, self.left_middle, self.left_back]
-
-self.tripod1 = [self.left_front, self.right_middle, self.left_back]
-self.tripod2 = [self.right_front, self.left_middle, self.right_back]
+hexy.legs # all six legs
+hexy.right_legs 
+hexy.left_legs
+hexy.tripod1 # left front, right middle left back
+hexy.tripod2 # right front, left middle, right back
 ```
 
 For example:
 
 ```
 for leg in hexy.right_legs:
-  leg.hip.pose(angle = 0);
-  leg.knee.pose(angle = 0);
-  leg.ankle.pose(angle = 0);
+  leg.hip.pose(angle = 0)
+  leg.knee.pose(angle = 0)
+  leg.ankle.pose(angle = 0)
   leg.off()
+
+for leg in hexy.tripod1:
+  leg.knee.pose(angle = 0)
+  leg.knee.off()
 ```
 
 You can also pose the `neck`:
