@@ -100,10 +100,7 @@ And consequently updated the initialization of `Joint` in line `132`
 As well as the `pose()` method in `Joint` in line `140`
 
 ```
-def pose:
-    ...
     pulse = remap((angle * self.direction), (-self.max, self.max), (self.min_pulse, self.max_pulse))
-    ...
 ```
 
 Also equally important is the range of motion of each `Joint` which I've defined in line `87` of the `Leg` class.
@@ -121,6 +118,7 @@ HexapodCore > Hexapod > HexapodPro > DancingHexapod
  
 The easiest way to get this up and running, on your raspberry pi zero is to do the following on the terminal via ssh.
 
+## Setup 
 ```
 $ ssh YOUR.RPI.IP.ADDR -l pi 
 $ cd /home/pi
@@ -130,6 +128,8 @@ $ python -m hexy.demo.demo1
 $ python -m hexy.demo.demo2
 $ python -m hexy.demo.demo3
 ```
+
+## High Level Usage
 
 Sample usage when running python interpreter from anywhere in your system... 
 
@@ -172,4 +172,64 @@ And this :)
 >>> hexy.thriller()
 >>> hexy.lie_down()
 >>> hexy.curl_up(die = True)
+```
+
+## Low Level Usage
+
+If you want to control the angle of each `Joint` (`hip`, `knee`, `ankle`) for each `Leg` you'd want to instantiate a `HexapodCore` object:
+
+```
+>>> from hexy.robot.core import HexapodCore
+>>> hexy = HexapodCore()
+```
+
+Each `Leg` can be access like this which is based in its position:
+
+```
+hexy.left_front
+hexy.left_middle
+hexy.left_back
+ 
+hexy.right_front
+hexy.right_middle
+hexy.right_back
+ 
+```
+
+Whose three `Joints` you can individual pose using the `pose` command, for example:
+
+```
+hexy.right_front.pose(hip_angle = 0, knee_angle = 0, ankle_angle = 0)
+hexy.right_front.off() # prevents servo overloading
+```
+
+There are also built-in lists of legs which you can iterate over IE from lines `58-66` of 
+[core.py](https://github.com/mithi/hexy/blob/master/hexy/robot/core.py)
+
+```
+self.legs = [self.left_front, self.right_front,
+             self.left_middle, self.right_middle,
+             self.left_back, self.right_back]
+
+self.right_legs = [self.right_front, self.right_middle, self.right_back]
+self.left_legs = [self.left_front, self.left_middle, self.left_back]
+
+self.tripod1 = [self.left_front, self.right_middle, self.left_back]
+self.tripod2 = [self.right_front, self.left_middle, self.right_back]
+```
+
+For example:
+
+```
+for leg in hexy.right_legs:
+  leg.hip.pose(angle = 0);
+  leg.knee.pose(angle = 0);
+  leg.ankle.pose(angle = 0);
+  leg.off()
+```
+
+You can also pose the `neck`:
+```
+hexy.neck.pose(angle = 90)
+hexy.neck.off()
 ```
