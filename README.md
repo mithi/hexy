@@ -1,3 +1,4 @@
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/minimithi)
 
 # TABLE OF CONTENTS
 - Links
@@ -232,3 +233,4 @@ You can also pose the `neck`:
 hexy.neck.pose(angle = 90)
 hexy.neck.off()
 ```
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/minimithi)
